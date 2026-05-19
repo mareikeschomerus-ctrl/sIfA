@@ -1,5 +1,7 @@
 # sIfA — Statement of Intellectual Fellowship and Accountability
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20285993.svg)](https://doi.org/10.5281/zenodo.20285993)
+
 A browser-based tool for declaring how AI tools contributed to a piece of research, mapped onto the 14 CRediT contributor roles. Produces a structured table and a single-page visualisation ("the sIfA figure") that can be attached to a publication, report, or institutional disclosure.
 
 > **sIfA** stands for **Statement of Intellectual Fellowship and Accountability**.

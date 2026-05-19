@@ -17,7 +17,7 @@ date-released: "2026-05-19"
 license: Apache-2.0
 repository-code: "https://github.com/mareikeschomerus-ctrl/sIfA"
 url: "https://github.com/mareikeschomerus-ctrl/sIfA"
-# doi: 10.5281/zenodo.XXXXXXX   # Uncomment and set once registered via Zenodo
+doi: 10.5281/zenodo.20285993
 keywords:
   - AI disclosure
   - research integrity

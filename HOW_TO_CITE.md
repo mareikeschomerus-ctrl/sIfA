@@ -12,9 +12,9 @@ A few principles before the templates:
 
 ## Short citation (reference lists and bibliographies)
 
-> Schomerus, M. (2026). *sIfA Tool — Statement of Intellectual Fellowship and Accountability* (Version 1.1) [Computer software]. Busara. https://github.com/mareikeschomerus-ctrl/sIfA
+> Schomerus, M. (2026). *sIfA Tool — Statement of Intellectual Fellowship and Accountability* (Version 1.1) [Computer software]. Busara. https://doi.org/10.5281/zenodo.20285993
 
-Replace `mareikeschomerus-ctrl/sIfA` with the repository URL. A DOI is being registered via Zenodo and will replace the URL once available.
+The DOI above is a *concept* DOI that always resolves to the latest version of the tool. Each released version also has its own version-specific DOI on Zenodo; use the concept DOI unless you need to pin to a precise version.
 
 **BibTeX**
 
@@ -26,6 +26,7 @@ Replace `mareikeschomerus-ctrl/sIfA` with the repository URL. A DOI is being reg
   year      = {2026},
   month     = {5},
   publisher = {Busara},
+  doi       = {10.5281/zenodo.20285993},
   url       = {https://github.com/mareikeschomerus-ctrl/sIfA}
 }
 ```
@@ -54,7 +55,7 @@ A machine-readable equivalent lives in [`CITATION.cff`](CITATION.cff); GitHub us
 
 ## Slide-deck or website footer (one-liner)
 
-> sIfA generated with the sIfA Tool by Mareike Schomerus (Busara), released under the Apache License 2.0. Available at https://github.com/mareikeschomerus-ctrl/sIfA.
+> sIfA generated with the sIfA Tool by Mareike Schomerus (Busara), released under the Apache License 2.0. https://doi.org/10.5281/zenodo.20285993.
 
 ---
 
