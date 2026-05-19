@@ -126,11 +126,11 @@ def main() -> int:
                     help="Source SVG (default: ./example.svg next to this script)")
     ap.add_argument("--folder", type=Path, default=here,
                     help="Folder containing the HTML files to patch (default: script directory)")
-    ap.add_argument("--pattern", default="Make your sIfA v1.0*.html",
-                    help="Glob within the folder. Default targets the v1.0 "
-                         "online + offline builds only; pass a wider glob "
-                         "(e.g. 'Make your sIfA v*.html') to update older "
-                         "versions too.")
+    ap.add_argument("--pattern", default="Make your sIfA v*.html",
+                    help="Glob within the folder. Default catches the current "
+                         "online + offline builds at the project root (archived "
+                         "builds in archive/ are not touched). Override to "
+                         "target a specific version if needed.")
     ap.add_argument("--keep-metadata", action="store_true",
                     help="Keep the <metadata> block from the SVG (default: strip it)")
     ap.add_argument("--dry-run", action="store_true",
