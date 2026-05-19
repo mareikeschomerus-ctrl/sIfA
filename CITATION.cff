@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use sIfA in published work, please cite it using the metadata below."
+title: "sIfA Tool — Statement of Intellectual Fellowship and Accountability"
+abstract: >-
+  A browser-based tool for declaring how AI tools contributed to a piece of
+  research, mapped onto the 14 CRediT contributor roles. Produces a structured
+  table and a single-page visualisation (the "sIfA figure") that can be
+  attached to a publication, report, or institutional disclosure.
+type: software
+authors:
+  - family-names: Schomerus
+    given-names: Mareike
+    affiliation: Busara
+    orcid: "https://orcid.org/0000-0003-1258-3613"
+version: "1.1"
+date-released: "2026-05-19"
+license: Apache-2.0
+repository-code: "https://github.com/mareikeschomerus-ctrl/sIfA"
+url: "https://github.com/mareikeschomerus-ctrl/sIfA"
+# doi: 10.5281/zenodo.XXXXXXX   # Uncomment and set once registered via Zenodo
+keywords:
+  - AI disclosure
+  - research integrity
+  - CRediT
+  - contributor roles
+  - responsible AI
+references:
+  - type: standard
+    title: "CRediT — Contributor Roles Taxonomy"
+    institution:
+      name: "NISO (National Information Standards Organization)"
+    url: "https://credit.niso.org"

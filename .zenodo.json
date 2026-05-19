@@ -1,0 +1,34 @@
+{
+  "title": "sIfA Tool — Statement of Intellectual Fellowship and Accountability",
+  "description": "<p>A browser-based tool for declaring how AI tools contributed to a piece of research, mapped onto the 14 <a href=\"https://credit.niso.org\">CRediT contributor roles</a> maintained by NISO. Produces a structured table and a single-page visualisation (the \"sIfA figure\") that can be attached to a publication, report, or institutional disclosure.</p><p><strong>sIfA</strong> stands for <em>Statement of Intellectual Fellowship and Accountability</em>. <em>Fellowship</em> treats AI tools as named collaborators in the work, not invisible utilities. <em>Accountability</em> keeps responsibility for the published work with the human author, who is making the disclosure deliberately and transparently.</p><p>The tool is distributed as a single self-contained HTML file (online and fully offline builds are provided). No install, no server, no build step required for end users.</p>",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "creators": [
+    {
+      "name": "Schomerus, Mareike",
+      "affiliation": "Busara",
+      "orcid": "0000-0003-1258-3613"
+    }
+  ],
+  "keywords": [
+    "AI disclosure",
+    "research integrity",
+    "responsible AI",
+    "contributor roles",
+    "CRediT",
+    "authorship",
+    "open science",
+    "research methods"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://credit.niso.org",
+      "relation": "isDocumentedBy",
+      "scheme": "url",
+      "resource_type": "publication-standard"
+    }
+  ],
+  "communities": [],
+  "notes": "Bundles React 18, ReactDOM 18 and Babel Standalone 7 in the offline build under their respective MIT licences (see THIRD_PARTY_LICENSES.md). The underlying CRediT taxonomy is a NISO standard, referenced under its own terms; this product is not endorsed by or affiliated with NISO."
+}

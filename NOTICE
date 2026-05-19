@@ -1,0 +1,34 @@
+sIfA Tool — Statement of Intellectual Fellowship and Accountability
+Copyright 2026 Mareike Schomerus / Busara
+
+This product includes software developed by Mareike Schomerus at Busara.
+
+────────────────────────────────────────────────────────────────────
+Underlying taxonomy
+────────────────────────────────────────────────────────────────────
+
+The contributor-role taxonomy used by this tool is the CRediT standard,
+maintained by NISO (National Information Standards Organization) at
+https://credit.niso.org. CRediT is referenced under its own terms;
+this product is not endorsed by or affiliated with NISO.
+
+────────────────────────────────────────────────────────────────────
+Third-party software bundled in the offline build
+────────────────────────────────────────────────────────────────────
+
+The "Make your sIfA vX.X (offline).html" build inlines the following
+third-party libraries so the tool can run without internet access.
+Each is distributed under the MIT License; full licence texts are in
+THIRD_PARTY_LICENSES.md.
+
+  • React (v18.2.0)
+    Copyright (c) Meta Platforms, Inc. and affiliates.
+    https://github.com/facebook/react
+
+  • ReactDOM (v18.2.0)
+    Copyright (c) Meta Platforms, Inc. and affiliates.
+    https://github.com/facebook/react
+
+  • Babel Standalone (v7.23.2)
+    Copyright (c) 2014-present Sebastian McKenzie and other contributors.
+    https://github.com/babel/babel
