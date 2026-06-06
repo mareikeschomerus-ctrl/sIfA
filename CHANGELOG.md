@@ -2,6 +2,21 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
+## [1.2] — 2026-06-05
+
+### Added
+- **All previously entered contributor names offered as autofill chips.** When a contributor name field is empty, every unique name already used elsewhere in the table appears as a clickable chip below the field — not just the first name. Cuts repeated typing across roles without limiting choice.
+- **Orphan-reason prompt when a contributor is added.** If text has already been entered in the "How was AI used / Audit trail" column before any contributor is named, clicking "+ Add contributor" now surfaces a small inline prompt asking whether to assign that text to the new contributor or keep it as a general note. The text is never silently discarded.
+- **Custom taxonomy role descriptions.** When setting up your own taxonomy, each role now has an optional description field (toggled with a "▼ desc" button per row). The description is stored in the role's `def` field and shown as a hover tooltip on the role name in the table — the same mechanism CRediT roles already use.
+- **Portfolio inline link in About panel.** The word "portfolio" in the "save your work" paragraph is now a clickable link that opens the Portfolio panel directly.
+
+### Changed
+- **All contributor roles always shown in the figure.** The radar figure now includes every non-skipped role regardless of whether AI usage was declared. Previously only roles with data appeared on the axes; the remaining axes were added as a fallback only when nothing at all was filled in. Axes are always divided evenly across all active roles.
+- **About panel: collapsed by default with prominent header.** The panel ships closed so the table is immediately visible on first load. The header has a dark background and carries a clearly labelled **▼ Expand / ▲ Collapse** button immediately adjacent to the title, so new users can find and open it without hunting for a small arrow.
+- **sIfA brand badge enlarged.** The toolbar badge is larger and bolder (24 px / weight 900, version number at 85 % opacity) so the tool name is immediately legible.
+- **Updated worked example.** The embedded example in the About panel is regenerated to show all 14 CRediT axes in the figure while keeping the same real sIfA data as before (Mareike Schomerus, sIfA Tool project).
+- **PDF print layout improved.** The print stylesheet now targets A4 landscape, removes fixed viewport-height constraints so content flows to full length, prevents mid-row page breaks, ensures textareas render their content rather than clipping it, and hides interactive chrome (toolbar, autofill chips, prompts) from the printed output.
+
 ## [1.1] — 2026-05-19
 
 ### Added

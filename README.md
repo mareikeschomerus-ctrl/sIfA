@@ -249,9 +249,9 @@ Both files contain the same JSX. The offline build is roughly 17× larger (aroun
 
 ## Citation
 
-If you use sIfA in published work, please cite it. The citation form below is the current convention; a DOI will be assigned via Zenodo once the project reaches a stable release.
+If you use sIfA in published work, please cite it using the form below. The DOI resolves via Zenodo and always points to the latest release.
 
-> Schomerus, Mareike. *sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).* Version 1.0. 2026. Busara. Available at: `https://github.com/mareikeschomerus-ctrl/sIfA` · DOI: *to be assigned via Zenodo.*
+> Schomerus, Mareike. *sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).* Version 1.2. 2026. Busara. https://doi.org/10.5281/zenodo.20285993
 
 A machine-readable version of the same information is in [`CITATION.cff`](CITATION.cff), which GitHub uses to populate the "Cite this repository" button.
 
