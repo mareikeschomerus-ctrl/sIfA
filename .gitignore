@@ -23,6 +23,5 @@ _reference/
 archive/
 
 # Empty leftover from the pre-flatten layout — delete in Finder when you get a chance
-github-docs/
 example-data.sifa.json
 orig-data.sifa.json
