@@ -81,18 +81,35 @@
       font-size: 1.15rem; max-width: 600px; margin: 0 auto 2.5rem;
       color: rgba(255,255,255,0.82); line-height: 1.6;
     }
+    .download-pair {
+      display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+    .download-option {
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    }
     .btn-download {
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--orange);
       color: var(--white);
-      font-size: 1.1rem; font-weight: 700;
-      padding: 1rem 2.25rem;
+      font-size: 1rem; font-weight: 700;
+      padding: 0.9rem 1.75rem;
       border-radius: 0.5rem;
       text-decoration: none;
       transition: background 0.15s, transform 0.1s;
       box-shadow: 0 4px 18px rgba(221,85,16,0.45);
+      white-space: nowrap;
     }
     .btn-download:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-download-secondary {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.6);
+      box-shadow: none;
+    }
+    .btn-download-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .download-note {
+      font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: center; max-width: 180px;
+    }
     .hero-footnote {
       margin-top: 1rem;
       font-size: 0.85rem; color: rgba(255,255,255,0.6);
@@ -284,9 +301,20 @@
     <p class="hero-eyebrow">Free open-source tool · No install · No account</p>
     <h1>Declare how <span>humans and AI interacted</span> in your knowledge creation process</h1>
     <p class="hero-sub">sIfA gives researchers a structured, standardised way to record AI interaction across every stage of a research project — anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy.</p>
-    <a class="btn-download" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.html">
-      &#8595;&nbsp;Download sIfA v1.3
-    </a>
+    <div class="download-pair">
+      <div class="download-option">
+        <a class="btn-download" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.html">
+          &#8595;&nbsp;Download online version
+        </a>
+        <span class="download-note">Requires internet. Loads faster. Recommended for most users.</span>
+      </div>
+      <div class="download-option">
+        <a class="btn-download btn-download-secondary" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.%28offline%29.html">
+          &#8595;&nbsp;Download offline version
+        </a>
+        <span class="download-note">No internet needed after download. For fieldwork or low-connectivity settings.</span>
+      </div>
+    </div>
     <p class="hero-footnote">One HTML file · Open it in Chrome, Edge, Safari, or Firefox · Nothing leaves your computer</p>
     <div class="badge-row">
       <a href="https://doi.org/10.5281/zenodo.20285993">

@@ -29,12 +29,28 @@ humans and AI interacted
 sIfA gives researchers a structured, standardised way to record AI interaction across every stage of a research project — anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy.
 [END]
 
-[FIELD: download_button_label]
-Download sIfA v1.3
+[FIELD: download_button_online_label]
+Download online version
 [END]
 
-[FIELD: download_url]
+[FIELD: download_button_online_note]
+Requires internet. Loads faster. Recommended for most users.
+[END]
+
+[FIELD: download_url_online]
 https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.html
+[END]
+
+[FIELD: download_button_offline_label]
+Download offline version
+[END]
+
+[FIELD: download_button_offline_note]
+No internet needed after download. For fieldwork or low-connectivity settings.
+[END]
+
+[FIELD: download_url_offline]
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.%28offline%29.html
 [END]
 
 [FIELD: hero_footnote]

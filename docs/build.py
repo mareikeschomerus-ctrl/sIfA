@@ -137,18 +137,35 @@ def build(fields, svg_b64, disclosure_b64=None):
       font-size: 1.15rem; max-width: 600px; margin: 0 auto 2.5rem;
       color: rgba(255,255,255,0.82); line-height: 1.6;
     }}
+    .download-pair {{
+      display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 0;
+    }}
+    .download-option {{
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    }}
     .btn-download {{
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--orange);
       color: var(--white);
-      font-size: 1.1rem; font-weight: 700;
-      padding: 1rem 2.25rem;
+      font-size: 1rem; font-weight: 700;
+      padding: 0.9rem 1.75rem;
       border-radius: 0.5rem;
       text-decoration: none;
       transition: background 0.15s, transform 0.1s;
       box-shadow: 0 4px 18px rgba(221,85,16,0.45);
+      white-space: nowrap;
     }}
     .btn-download:hover {{ background: var(--orange-dark); transform: translateY(-1px); }}
+    .btn-download-secondary {{
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.6);
+      box-shadow: none;
+    }}
+    .btn-download-secondary:hover {{ background: rgba(255,255,255,0.1); transform: translateY(-1px); }}
+    .download-note {{
+      font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: center; max-width: 180px;
+    }}
     .hero-footnote {{
       margin-top: 1rem;
       font-size: 0.85rem; color: rgba(255,255,255,0.6);
@@ -340,9 +357,20 @@ def build(fields, svg_b64, disclosure_b64=None):
     <p class="hero-eyebrow">{fields["hero_eyebrow"]}</p>
     <h1>{headline_html}</h1>
     <p class="hero-sub">{fields["hero_subheading"]}</p>
-    <a class="btn-download" href="{fields["download_url"]}">
-      &#8595;&nbsp;{fields["download_button_label"]}
-    </a>
+    <div class="download-pair">
+      <div class="download-option">
+        <a class="btn-download" href="{fields["download_url_online"]}">
+          &#8595;&nbsp;{fields["download_button_online_label"]}
+        </a>
+        <span class="download-note">{fields["download_button_online_note"]}</span>
+      </div>
+      <div class="download-option">
+        <a class="btn-download btn-download-secondary" href="{fields["download_url_offline"]}">
+          &#8595;&nbsp;{fields["download_button_offline_label"]}
+        </a>
+        <span class="download-note">{fields["download_button_offline_note"]}</span>
+      </div>
+    </div>
     <p class="hero-footnote">{fields["hero_footnote"]}</p>
     <div class="badge-row">
       <a href="{fields["zenodo_doi"]}">
