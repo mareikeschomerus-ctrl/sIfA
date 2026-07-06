@@ -60,7 +60,7 @@ The interface is a single page with three parts:
 
 - **A header** with action buttons — Save, Load, Reset, export options, the About panel.
 - **A table** with one row per CRediT contributor role (14 rows by default). Each row records who performed the role, how AI was used in it, the tool used, and an audit-trail note.
-- **A figure** — the "sIfA figure" — that renders as a brain-shaped silhouette with one axis per active role. The orange field is the human contribution; the purple inner shape is the AI contribution; small purple sparkles mark the extent of AI involvement on each role's axis.
+- **A figure** — the "sIfA figure" — that renders as a brain-shaped silhouette with one axis for all recorded contributor roles, dividing evenly across them (a completely blank sIfA falls back to showing every active role rather than an empty chart). The orange field is the human contribution; the purple inner shape is the AI contribution; small purple sparkles mark the extent of AI involvement on each role's axis.
 
 Both the table and the figure can be exported, either together as one composite SVG or as figure-only.
 
@@ -69,7 +69,7 @@ Both the table and the figure can be exported, either together as one composite 
 - **Direct entry.** Click any cell and type. Each role row supports multiple contributors. For each contributor you can record an engagement level (Sole / Lead / Equal / Support) and, separately, the extent of AI use on that role.
 - **Agent interview.** Click the AI Agent option to be walked through every role with a series of plain-language questions: who contributed, at what level, whether AI was used, with what tool, and how extensively. The agent enforces the role-rules (see below) and lets you skip roles that do not apply. The result lands in the same editable table, so you can revise anything afterwards.
 
-If the standard 14 CRediT roles do not fit your project, the **Use your own taxonomy** button at the top of the table opens a modal where you can define your own role labels. The agent flow respects the custom taxonomy too.
+If the standard 14 CRediT roles do not fit your project, the **Set up my own taxonomy** button at the top of the table (labelled **Edit my taxonomy** once you're using one) opens a modal where you can define your own role labels, add a role to a taxonomy you're already using — CRediT or custom — without retyping the rest, or start a blank taxonomy from scratch. Each role can carry its own short definition, shown as a tooltip in the table; CRediT roles' definitions can be edited too. The agent flow respects the custom taxonomy too.
 
 For the full role definitions and worked examples of the research tasks that map to each role, see NISO's CRediT documentation at [credit.niso.org](https://credit.niso.org).
 
@@ -222,7 +222,7 @@ const ROLES = [
 
 Anything keyed off `id` (the table, the agent flow, the figure axes, CSV export) picks up the new role automatically.
 
-For *custom* taxonomies (defined by the end user at runtime), `buildCustomRoles(labels)` constructs role objects from a list of free-text labels, assigning colours from `CUSTOM_COLORS` in rotation. Both the agent and the in-table "Use your own taxonomy" button funnel through this helper.
+For *custom* taxonomies (defined by the end user at runtime), `buildCustomRoles(labels)` constructs fresh role objects from a list of free-text labels, assigning colours from `CUSTOM_COLORS` in rotation; the agent flow uses this for a brand-new taxonomy. The in-table "Set up my own taxonomy" / "Edit my taxonomy" button instead funnels through `mergeCustomRoles(entries, currentRoles)`, which preserves the `id` (and therefore all existing data) for any role that's unchanged — including CRediT roles, whose real ids don't always match what `buildCustomRoles` would slugify from the label — and only mints a new id/colour for genuinely new rows.
 
 ### Build: how the offline file is generated
 
@@ -251,7 +251,7 @@ Both files contain the same JSX. The offline build is roughly 17× larger (aroun
 
 If you use sIfA in published work, please cite it using the form below. The DOI resolves via Zenodo and always points to the latest release.
 
-> Schomerus, Mareike. *sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).* Version 1.2. 2026. Busara. https://doi.org/10.5281/zenodo.20285993
+> Schomerus, Mareike. *sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).* Version 1.3. 2026. Busara. https://doi.org/10.5281/zenodo.20285993
 
 A machine-readable version of the same information is in [`CITATION.cff`](CITATION.cff), which GitHub uses to populate the "Cite this repository" button.
 

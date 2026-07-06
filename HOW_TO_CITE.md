@@ -12,7 +12,7 @@ A few principles before the templates:
 
 ## Short citation (reference lists and bibliographies)
 
-> Schomerus, M. (2026). *sIfA Tool — Statement of Intellectual Fellowship and Accountability* (Version 1.2) [Computer software]. Busara. https://doi.org/10.5281/zenodo.20285993
+> Schomerus, M. (2026). *sIfA Tool — Statement of Intellectual Fellowship and Accountability* (Version 1.3) [Computer software]. Busara. https://doi.org/10.5281/zenodo.20285993
 
 The DOI above is a *concept* DOI that always resolves to the latest version of the tool. Each released version also has its own version-specific DOI on Zenodo; use the concept DOI unless you need to pin to a precise version.
 
@@ -22,9 +22,9 @@ The DOI above is a *concept* DOI that always resolves to the latest version of t
 @software{Schomerus_sIfA_2026,
   author    = {Schomerus, Mareike},
   title     = {{sIfA Tool — Statement of Intellectual Fellowship and Accountability}},
-  version   = {1.2},
+  version   = {1.3},
   year      = {2026},
-  month     = {6},
+  month     = {7},
   publisher = {Busara},
   doi       = {10.5281/zenodo.20285993},
   url       = {https://github.com/mareikeschomerus-ctrl/sIfA}
@@ -49,7 +49,7 @@ A machine-readable equivalent lives in [`CITATION.cff`](CITATION.cff); GitHub us
 
 ## Caption to the sIfA figure (when embedded in a paper or report)
 
-> Figure X. Statement of Intellectual Fellowship and Accountability (sIfA) for this work, generated with the sIfA Tool v1.2 (Schomerus, 2026). The orange field represents human contribution; the inner purple shape represents AI contribution; each axis is one CRediT contributor role.
+> Figure X. Statement of Intellectual Fellowship and Accountability (sIfA) for this work, generated with the sIfA Tool v1.3 (Schomerus, 2026). The orange field represents human contribution; the inner purple shape represents AI contribution; each axis is one CRediT contributor role.
 
 ---
 
