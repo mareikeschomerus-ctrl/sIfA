@@ -99,6 +99,13 @@ def build(fields, svg_b64, disclosure_b64=None):
       font-size: 1.1rem; font-weight: 700; letter-spacing: 0.04em;
       text-decoration: none;
     }}
+    .nav-left {{ display: flex; align-items: center; gap: 1.25rem; }}
+    .nav-busara-logo {{
+      height: 30px; width: auto; opacity: 1;
+      transition: opacity 0.15s;
+      filter: brightness(0) invert(1);
+    }}
+    .nav-busara-logo:hover {{ opacity: 0.8; }}
     .nav-links {{ display: flex; gap: 1.75rem; }}
     .nav-links a {{
       color: rgba(255,255,255,0.8);
@@ -342,7 +349,12 @@ def build(fields, svg_b64, disclosure_b64=None):
 <body>
 
 <nav>
-  <a class="nav-brand" href="#">sIfA</a>
+  <div class="nav-left">
+    <a class="nav-brand" href="#">sIfA</a>
+    <a href="https://busara.global" target="_blank" rel="noopener">
+      <img class="nav-busara-logo" src="busara-logo.png" alt="Busara">
+    </a>
+  </div>
   <div class="nav-links">
     <a href="#how-it-works">How it works</a>
     <a href="#figure">Example</a>
