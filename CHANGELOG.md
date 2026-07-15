@@ -2,7 +2,7 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
-## [Unreleased]
+## [1.4] — 2026-07-15
 
 ### Added
 - **Project name.** A new "Project: …" button in the toolbar (next to 🎨 Colours) lets you tag the current sIfA with a free-text project label. It's saved with the file (`projectName`) and carried automatically onto portfolio entries when you add to or refresh them from the draft, so a portfolio can hold sIfAs from several projects without re-typing which is which. Shown under each entry's summary in the Portfolio panel.
@@ -12,6 +12,7 @@ All notable changes to the sIfA tool are documented in this file. The format fol
 - **Figure: internal brain "sulci" texture lines removed.** The five faint curved fissure lines that ran across the brain shape (mostly horizontal) were reported as confusing rather than illustrative and have been dropped. The organic ring texture and outline remain.
 - **Figure: role-to-centre lines strengthened.** Each axis now has a solid line running from the centre "0" out toward its label, coloured to match that role's own accent colour (same colour as its label text and data marker), replacing the previous near-invisible white line that stopped well short of the label and was clipped inside the brain shape. Makes it much clearer which label belongs to which axis and data point.
 - **Figure: AI blob widened and strengthened.** A lone value of 1 sitting between two axes at 0 used to collapse to a thin spike that the soft blur all but erased. Each axis now contributes a small angular "shoulder" either side of its data point (capped so it can never overlap a neighbouring axis, however many roles are active) instead of a single point, and fill/stroke opacity on the blob and its glow layers are higher — so an isolated value now reads as a clear, wide patch while the edges stay soft.
+- **Figure: AI fill can no longer touch the val=2 boundary ring.** A side effect of the widening above — the blob's curve can overshoot between axes with very different values, and at full strength (extent 2) that overshoot could bulge the fill out to the ring that is meant to always read as human, leaving no orange margin. The fill is now hard-clipped just inside that ring, so a visible orange band is guaranteed regardless of how the curve behaves.
 
 ## [1.3] — 2026-07-05
 

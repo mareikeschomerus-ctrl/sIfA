@@ -38,7 +38,7 @@ Requires internet. Loads faster. Recommended for most users.
 [END]
 
 [FIELD: download_url_online]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.html
 [END]
 
 [FIELD: download_button_offline_label]
@@ -50,7 +50,7 @@ No internet needed after download. For fieldwork or low-connectivity settings.
 [END]
 
 [FIELD: download_url_offline]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.3.%28offline%29.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.%28offline%29.html
 [END]
 
 [FIELD: hero_footnote]
@@ -206,7 +206,7 @@ How to cite sIfA
 [END]
 
 [FIELD: citation_text]
-Schomerus, Mareike. <em>sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).</em> Version 1.3. 2026. Busara. <a class="doi-link" href="https://doi.org/10.5281/zenodo.20285993">https://doi.org/10.5281/zenodo.20285993</a>
+Schomerus, Mareike. <em>sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).</em> Version 1.4. 2026. Busara. <a class="doi-link" href="https://doi.org/10.5281/zenodo.20285993">https://doi.org/10.5281/zenodo.20285993</a>
 [END]
 
 [FIELD: citation_note]

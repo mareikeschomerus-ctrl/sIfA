@@ -102,10 +102,10 @@ If you redo the sIfA for the website itself:
 
 ## GitHub authentication
 
-Pushing requires a Personal Access Token (not your GitHub password).
-- Token is stored in macOS Keychain after first use
-- If asked for a password, go to `https://github.com/settings/tokens/new`, generate a new token (tick **repo**), and paste it as the password
-- After pasting, run `git config --global credential.helper osxkeychain` to save it
+Auth setup is documented once, centrally, in
+`~/Dropbox (Personal)/ Work/exec-assistant/SETUP.md` (see "Fixing git
+authentication properly, once") — check there rather than here so this
+doesn't drift out of sync with the real state.
 
 ---
 
