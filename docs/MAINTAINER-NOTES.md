@@ -81,9 +81,17 @@ https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your
 [END]
 
 [FIELD: download_url_offline]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.%28offline%29.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.offline.html
 [END]
 ```
+
+**On the offline filename:** GitHub's release-asset upload strips parentheses from
+filenames entirely — it doesn't substitute them with anything, it just deletes them.
+`Make your sIfA v1.4 (offline).html` becomes the asset `Make.your.sIfA.v1.4.offline.html`
+(spaces become dots as usual, but `(` and `)` just vanish — no dot in their place). The
+URL above already accounts for this; don't add `%28`/`%29` around "offline" or the
+download link will 404 even though the release itself uploaded fine. Confirmed by testing
+against the actual v1.4 release — the parenthesised URL 404s, this one 200s.
 
 Then rebuild and push.
 

@@ -50,7 +50,7 @@ No internet needed after download. For fieldwork or low-connectivity settings.
 [END]
 
 [FIELD: download_url_offline]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.%28offline%29.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.offline.html
 [END]
 
 [FIELD: hero_footnote]
