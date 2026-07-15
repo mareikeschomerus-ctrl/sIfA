@@ -961,11 +961,32 @@ const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp
   const totalAI = displayRoles.reduce((s, r) => s + (data[r.id]?.extent || 0), 0);
   const avgAI   = (totalAI / N).toFixed(1);
 
-  const _aiPts = displayRoles.map((r, i) => ({
-    x: cx + (data[r.id]?.extent||0)/2*dataR*Math.cos(ang(i)),
-    y: cy + (data[r.id]?.extent||0)/2*dataR*Math.sin(ang(i)),
-  }));
-  const aiBlob = _smoothBlob(_aiPts);
+  // Each axis contributes three points (a small angular "shoulder" either
+  // side of the axis, plus the axis itself) instead of one, at the same
+  // radius. A lone value of 1 next to two 0s used to be a single point the
+  // spline curve pulled down to almost nothing on both sides — barely
+  // visible once blurred. The shoulder gives that value a small plateau to
+  // curve from, so it reads as a clear wedge rather than a vanishing spike,
+  // while the curve between axes (and the blur) still keeps every edge
+  // soft. The shoulder angle is capped relative to the axis spacing so it
+  // can never overlap a neighbouring axis's own shoulder, however many
+  // roles are active.
+  const _blobPts = (getVal) => {
+    const shoulder = Math.min(0.12, (Math.PI / N) * 0.6);
+    const pts = [];
+    displayRoles.forEach((r, i) => {
+      const rad = (getVal(r) / 2) * dataR;
+      if (rad <= 0) { pts.push({ x: cx, y: cy }); return; }
+      const a = ang(i);
+      pts.push({ x: cx + rad * Math.cos(a - shoulder), y: cy + rad * Math.sin(a - shoulder) });
+      pts.push({ x: cx + rad * Math.cos(a),            y: cy + rad * Math.sin(a) });
+      pts.push({ x: cx + rad * Math.cos(a + shoulder), y: cy + rad * Math.sin(a + shoulder) });
+    });
+    return pts;
+  };
+
+  const _aiPts = _blobPts(r => data[r.id]?.extent || 0);
+  const aiBlob = _smoothBlob(_aiPts, 0.5);
 
   // ── 4-pointed sparkle shape centred at (x,y) with outer radius r ──
   // Mimics the AI ✦ sparkle: 4 long points at N/E/S/W, narrow waist between them.
@@ -1756,14 +1777,10 @@ ${body}
         {/* AI blob — 5 blurred glow layers, lightest (extent≥1) to deepest (extent=5) */}
         <g clipPath="url(#brainClip)">
           {[1,2].map(k => {
-            const _glowPts = displayRoles.map((r, i) => ({
-              x: cx + (Math.min(data[r.id]?.extent||0,k)/2)*dataR*Math.cos(ang(i)),
-              y: cy + (Math.min(data[r.id]?.extent||0,k)/2)*dataR*Math.sin(ang(i)),
-            }));
-            const d = _smoothBlob(_glowPts);
+            const d = _smoothBlob(_blobPts(r => Math.min(data[r.id]?.extent||0, k)), 0.5);
             return (
               <path key={k} d={d}
-                fill={EXTENT_COLORS[k]} fillOpacity={0.72}
+                fill={EXTENT_COLORS[k]} fillOpacity={0.85}
                 filter="url(#blobBlur)" />
             );
           })}
@@ -1771,11 +1788,14 @@ ${body}
         {/* Solid fill — always visible regardless of extent size. The
             boundary is softened (blurred) rather than a crisp hard line,
             so the AI region reads as a gradient edge, matching the glow
-            layers above instead of looking like a sharp cutoff. */}
+            layers above instead of looking like a sharp cutoff. Opacity
+            and stroke are deliberately stronger than a first pass at this
+            (0.55/0.55) — at that strength a lone value of 1 sitting next
+            to 0s on both sides all but disappeared once blurred. */}
         {totalAI > 0 && (
           <path d={aiBlob} clipPath="url(#brainClip)"
-            fill={_aiFill} fillOpacity={0.55}
-            stroke="#5341BC" strokeWidth={5} strokeOpacity={0.55}
+            fill={_aiFill} fillOpacity={0.8}
+            stroke="#5341BC" strokeWidth={5} strokeOpacity={0.8}
             filter="url(#blobBlur)" />
         )}
 
