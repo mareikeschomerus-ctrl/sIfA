@@ -341,6 +341,9 @@ function(a,b,c){if(!Vd(b))throw Error(n(200));return Wd(null,a,b,!1,c)};Q.unmoun
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; background: #FAFAFA; }
+  /* Injected by saveAsPDF (table-only print) — hidden on screen, shown only
+     while printing (see the @media print override below). */
+  .print-project-banner { display: none; }
   @media print {
     @page { size: A4 landscape; margin: 8mm; }
     body {
@@ -359,6 +362,8 @@ function(a,b,c){if(!Vd(b))throw Error(n(200));return Wd(null,a,b,!1,c)};Q.unmoun
     /* Remove viewport constraints */
     #root > div { height: auto !important; overflow: visible !important; }
     header, [data-toolbar] { display: none !important; }
+
+    .print-project-banner { display: block !important; text-align: center; font-weight: 600; font-size: 11pt; margin-bottom: 6mm; }
 
     /* Print figure section — shown only when inserted by saveAsPDFWithFigure */
     .print-figure-section {
@@ -774,11 +779,14 @@ const SHORT = {
   writing_review:      ["Writing","(rev. & editing)"],
 };
 
-const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp, fontFamily, taxonomyMode, humanColor, aiColor, onSaveAsPDF }, ref) {
+const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp, fontFamily, taxonomyMode, humanColor, aiColor, projectName, onSaveAsPDF }, ref) {
   const _ff = fontFamily || "'Montserrat','Segoe UI',Arial,sans-serif";
   const _humanFill = humanColor || '#DD5510';
   const _aiFill    = aiColor    || '#6E55D6';
   const _isCRediT = taxonomyMode === 'credit';
+  // Trimmed project name, reused by every exporter below to add a
+  // "Project: …" subtitle under the "sIfA" title when one has been set.
+  const _pn = (projectName || '').trim();
   // Attribution shown beneath the figure when CRediT is the active taxonomy
   const _creditAttrib1 = "Contributor roles are based on the Contributor Role Taxonomy (CRediT).";
   const _creditAttrib2 = "More info at https://credit.niso.org";
@@ -813,7 +821,7 @@ const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp
     const totalAI       = aiActiveRoles.reduce((s,r) => s+(data[r.id]?.extent||0), 0);
     const avgExt        = aiActiveRoles.length > 0 ? (totalAI/aiActiveRoles.length).toFixed(1) : '0.0';
     const W = 720;
-    const headerH = 46;  // tightened gap under the 'sIfA' title
+    const headerH = _pn ? 64 : 46;  // extra room for the "Project: …" subtitle when set
     const chartScale = (W - 20) / 670;
     const chartW = Math.round(670 * chartScale);
     const chartH = Math.round(_cropH * chartScale);  // cropped viewBox trims the chart's own empty top/bottom margin
@@ -827,6 +835,7 @@ const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp
     const H = stmtY + stmtH + 12;
     let body = `<rect width="${W}" height="${H}" fill="white"/>`;
     body += `<text x="${W/2}" y="40" text-anchor="middle" ${ff} font-size="28.0" font-weight="700" fill="#1E293B">sIfA</text>`;
+    if (_pn) body += `<text x="${W/2}" y="58" text-anchor="middle" ${ff} font-size="14.0" font-weight="600" fill="#334155">Project: ${esc(_pn)}</text>`;
     body += `<svg x="${chartOffX}" y="${chartOffY}" width="${chartW}" height="${chartH}" viewBox="-25 ${_cropTop} 670 ${_cropH}" xmlns="http://www.w3.org/2000/svg">${chartInner}</svg>`;
     body += `<line x1="20" y1="${capY - 4}" x2="${W-20}" y2="${capY - 4}" stroke="#E2E8F0" stroke-width="0.8"/>`;
     body += `<text x="${W/2}" y="${capY + 13}" text-anchor="middle" ${ff} font-size="13.5" fill="#000000">AI interaction across contributor roles</text>`;
@@ -1087,8 +1096,8 @@ const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp
     const avgExt        = aiActiveRoles.length > 0 ? (totalAI/aiActiveRoles.length).toFixed(1) : '0.0';
 
     const W = 720;
-    // Header now contains only the 'sIfA' title — explanation lives below the figure.
-    const headerH = 46;  // tightened gap under the 'sIfA' title
+    // Header contains the 'sIfA' title, plus a "Project: …" subtitle when set.
+    const headerH = _pn ? 64 : 46;
     // Chart viewBox width stays fixed (role labels span x ∈ [-17, 637] at
     // radius 215, so -25..645 gives ~8px breathing room on each side); the
     // height is cropped dynamically to the measured content above.
@@ -1129,8 +1138,9 @@ const RadarChart = React.forwardRef(function RadarChart({ data, roles: rolesProp
     let body = '';
     body += `<rect width="${W}" height="${H}" fill="white"/>`;
 
-    // Title block — just sIfA
+    // Title block — sIfA, plus a Project subtitle when set
     body += `<text x="${W/2}" y="40" text-anchor="middle" ${ff} font-size="28.0" font-weight="700" fill="#1E293B">sIfA</text>`;
+    if (_pn) body += `<text x="${W/2}" y="58" text-anchor="middle" ${ff} font-size="14.0" font-weight="600" fill="#334155">Project: ${esc(_pn)}</text>`;
 
     // Chart
     body += `<svg x="${chartOffX}" y="${chartOffY}" width="${chartW}" height="${chartH}" viewBox="-25 ${_cropTop} 670 ${_cropH}" xmlns="http://www.w3.org/2000/svg">${chartInner}</svg>`;
@@ -1442,7 +1452,7 @@ ${body}
     const _cropH = _cropBottom - _cropTop;
     const _chartScale = (rightW - 20) / 670;
     const _chartH = Math.round(_cropH * _chartScale);  // cropped viewBox trims the chart's own empty top/bottom margin
-    const _chartOffY = 46;                 // chart starts just under the 'sIfA' title (tightened)
+    const _chartOffY = _pn ? 64 : 46;      // chart starts just under the 'sIfA' title (+ Project subtitle when set)
     // Bottom block on the figure side, condensed: caption+legend (~88) + disclaimer
     // (~30) + CRediT attribution (~30, only when active) + a little safety margin.
     const _stmtH = (_isCRediT ? 172 : 142);
@@ -1637,8 +1647,9 @@ ${body}
     // appended pinned to the top — any leftover height (when the table side
     // is what's driving H) simply falls after the content instead.
     let figContent = '';
-    // Title — just 'sIfA'
+    // Title — sIfA, plus a Project subtitle when set
     figContent += `<text x="${rightW/2}" y="36" text-anchor="middle" ${ff} font-size="26.0" font-weight="700" fill="#1E293B">sIfA</text>`;
+    if (_pn) figContent += `<text x="${rightW/2}" y="53" text-anchor="middle" ${ff} font-size="13.0" font-weight="600" fill="#334155">Project: ${esc(_pn)}</text>`;
     // Embedded chart
     figContent += `<svg x="${chartOffX}" y="${chartOffY}" width="${chartW}" height="${chartH}" viewBox="-25 ${_cropTop} 670 ${_cropH}" xmlns="http://www.w3.org/2000/svg">${chartInner}</svg>`;
 
@@ -3205,7 +3216,21 @@ function App() {
         el.textContent = el.value;
       });
     } catch (e) {}
+
+    // This path prints the live table with no figure injected (unlike
+    // saveAsPDFWithFigure, whose SVG already carries a Project subtitle) —
+    // add the same subtitle as a print-only banner so a table-only PDF
+    // still says which project it belongs to.
+    const pn = projectName.trim();
+    let banner = null;
+    if (pn) {
+      banner = document.createElement('div');
+      banner.className = 'print-project-banner';
+      banner.textContent = `Project: ${pn}`;
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
     window.print();
+    if (banner && banner.parentNode) banner.parentNode.removeChild(banner);
   };
 
   const loadFromFile = () => fileInputRef.current?.click();
@@ -3375,7 +3400,20 @@ function App() {
     }
     setDataAndPush(prev => {
       const d = prev[roleId];
-      const cs = [...(d.contributors||[]), { name:'', level:'Equal', tool:'', reason:'', extent:0 }];
+      const existing = d.contributors || [];
+      // First contributor on a role has nothing to share credit with, so
+      // Sole is the only level that makes sense as a default. Adding a
+      // second flips both to Equal — a reasonable starting assumption for
+      // two people on one role — which can then be adjusted by hand (e.g.
+      // to Lead/Support) if the split isn't actually even. From a third
+      // contributor onward, new entries default to Equal too, matching
+      // the existing rule that all contributors must share Equal once the
+      // group is in that mode (see the AI-agent interview's own level
+      // constraints above).
+      const newLevel = existing.length === 0 ? 'Sole' : 'Equal';
+      const cs = existing.length === 1
+        ? [{ ...existing[0], level: 'Equal' }, { name:'', level:'Equal', tool:'', reason:'', extent:0 }]
+        : [...existing, { name:'', level:newLevel, tool:'', reason:'', extent:0 }];
       return { ...prev, [roleId]: { ...d, contributors:cs, extent:reweigh(cs) }};
     });
   };
@@ -3458,6 +3496,24 @@ function App() {
     return names;
   })();
 
+  // Same idea for Tool/Service — every distinct tool name typed anywhere,
+  // offered as chips on empty tool fields. Replaces the old native
+  // <datalist> autocomplete, which can't attach to a <textarea>; the Tool
+  // field is now multiline so long tool lists actually wrap instead of
+  // scrolling sideways in a narrow single-line input.
+  const allToolNames = (() => {
+    const seen = new Set();
+    const tools = [];
+    for (const r of activeRoles) {
+      const d = data[r.id] || {};
+      const candidates = [(d.tool || '').trim(), ...(d.contributors || []).map(c => (c.tool || '').trim())];
+      for (const t of candidates) {
+        if (t && !seen.has(t)) { seen.add(t); tools.push(t); }
+      }
+    }
+    return tools;
+  })();
+
   const filled = activeRoles.filter(r => (data[r.id]?.extent || 0) > 0 || data[r.id]?.tool).length;
 
   return (
@@ -3466,20 +3522,6 @@ function App() {
       {/* Hidden file input for Load sIfA */}
       <input ref={fileInputRef} type="file" accept=".json,application/json"
         onChange={handleFileLoad} style={{ display:"none" }} />
-
-      {/* Session-local Tool/Service autocomplete — collects every
-          distinct non-empty tool string from the live data so the same
-          tool name doesn't have to be re-typed in every row. */}
-      <datalist id="tool-service-suggestions">
-        {Array.from(new Set(
-          activeRoles.flatMap(r => {
-            const d = data[r.id] || {};
-            const fromRow = (d.tool || '').trim();
-            const fromContribs = (d.contributors || []).map(c => (c.tool || '').trim());
-            return [fromRow, ...fromContribs].filter(Boolean);
-          })
-        )).sort((a,b) => a.localeCompare(b)).map(t => <option key={t} value={t} />)}
-      </datalist>
 
       {/* Autosave-nudge banner — appears after 20 minutes of editing
           without writing out a portable .sifa.json, and only if the
@@ -4082,7 +4124,7 @@ function App() {
             </div>
 
             {/* Table */}
-            <div className="print-table" style={{ borderRadius:10, overflow:"auto", boxShadow:"0 1px 4px rgba(0,0,0,0.06)", border:"1px solid #E2E8F0", display:"grid", gridTemplateColumns:"200px 250px 175px 2fr 160px" }}>
+            <div className="print-table" style={{ borderRadius:10, overflow:"auto", boxShadow:"0 1px 4px rgba(0,0,0,0.06)", border:"1px solid #E2E8F0", display:"grid", gridTemplateColumns:"200px 250px 175px 2fr 210px" }}>
 
               {/* Header cells — direct children of single shared grid */}
               <div style={{ padding:"10px 26px 10px 12px", background:"#F8FAFC", borderBottom:"1px solid #E2E8F0", color:"#000000", fontWeight:600, fontSize:12, lineHeight:1.3, letterSpacing:"0.03em", display:"flex", alignItems:"center", borderLeft:"4px solid transparent", borderRight:"1px solid #E2E8F0" }}>
@@ -4283,22 +4325,48 @@ function App() {
                     <div style={{ padding:"7px 10px", borderTop:_rowTop, display:"flex", flexDirection:"column", justifyContent:"center", gap:3, background:_rowBg, transition:"background 0.25s" }}>
                       {(d.contributors||[]).length > 0 ? (
                         d.contributors.map((c, ci) => (
-                          <div key={ci} style={{ display:"flex", alignItems:"baseline", gap:3 }}>
-                            {c.name && <span style={{ color:"#000000", fontSize:12, flexShrink:0 }}>{c.name.split(' ')[0]}:</span>}
-                            <TableInput value={c.tool||''}
-                              onCommit={v => updateContrib(role.id, ci, { tool:v })}
-                              placeholder="Tool / Service…"
-                              ariaLabel="Tool or service used"
-                              list="tool-service-suggestions"
-                              style={{ flex:1, minWidth:0, border:"none", background:"transparent", outline:"none", fontSize:13, color:"#1E293B" }} />
-                          </div>
+                          <React.Fragment key={ci}>
+                            <div style={{ display:"flex", alignItems:"baseline", gap:3 }}>
+                              {c.name && <span style={{ color:"#000000", fontSize:12, flexShrink:0 }}>{c.name.split(' ')[0]}:</span>}
+                              <TableInput value={c.tool||''}
+                                onCommit={v => updateContrib(role.id, ci, { tool:v })}
+                                placeholder="Tool / Service…"
+                                ariaLabel="Tool or service used"
+                                multiline
+                                style={{ flex:1, minWidth:0, border:"none", background:"transparent", outline:"none", fontSize:13, color:"#1E293B", whiteSpace:"pre-wrap", wordBreak:"break-word" }} />
+                            </div>
+                            {(!c.tool || !c.tool.trim()) && allToolNames.length > 0 && (
+                              <div className="no-print" style={{ display:"flex", flexWrap:"wrap", gap:3 }}>
+                                {allToolNames.filter(t => t !== (c.tool||'').trim()).map(t => (
+                                  <button key={t} onClick={() => updateContrib(role.id, ci, { tool: t })}
+                                    title={`Use "${t}" as the tool`}
+                                    style={{ border:`1px solid ${role.border}`, background:role.bg, color:role.accent, cursor:"pointer", fontSize:12, padding:"1px 6px", borderRadius:10, whiteSpace:"nowrap", opacity:0.9, lineHeight:1.4 }}>
+                                    ↩ {t.length > 24 ? t.slice(0,23)+'…' : t}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </React.Fragment>
                         ))
                       ) : (
-                        <TableInput value={d.tool} onCommit={v => update(role.id, { tool:v })}
-                          placeholder="Tool / Service…"
-                          ariaLabel="Tool or service used"
-                          list="tool-service-suggestions"
-                          style={{ width:"100%", border:"none", background:"transparent", outline:"none", fontSize:14, color:"#1E293B" }} />
+                        <>
+                          <TableInput value={d.tool} onCommit={v => update(role.id, { tool:v })}
+                            placeholder="Tool / Service…"
+                            ariaLabel="Tool or service used"
+                            multiline
+                            style={{ width:"100%", border:"none", background:"transparent", outline:"none", fontSize:14, color:"#1E293B", whiteSpace:"pre-wrap", wordBreak:"break-word" }} />
+                          {(!d.tool || !d.tool.trim()) && allToolNames.length > 0 && (
+                            <div className="no-print" style={{ display:"flex", flexWrap:"wrap", gap:3 }}>
+                              {allToolNames.map(t => (
+                                <button key={t} onClick={() => update(role.id, { tool: t })}
+                                  title={`Use "${t}" as the tool`}
+                                  style={{ border:`1px solid ${role.border}`, background:role.bg, color:role.accent, cursor:"pointer", fontSize:12, padding:"1px 6px", borderRadius:10, whiteSpace:"nowrap", opacity:0.9, lineHeight:1.4 }}>
+                                  ↩ {t.length > 24 ? t.slice(0,23)+'…' : t}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
                   </React.Fragment>
@@ -4363,6 +4431,11 @@ function App() {
               <h2 style={{ fontSize:18, fontWeight:700, color:"#1E293B", margin:0 }}>
                 sIfA
               </h2>
+              {projectName.trim() && (
+                <p style={{ fontSize:13, fontWeight:600, color:"#334155", margin:"3px 0 0" }}>
+                  Project: {projectName.trim()}
+                </p>
+              )}
               <p style={{ fontSize:12, color:"#000000", margin:"3px 0 0" }}>
                 Outer ring = Human · Centre = AI · Each axis = one contributor role
               </p>
@@ -4386,7 +4459,7 @@ function App() {
             ))}
           </div>
 
-          <RadarChart ref={radarRef} data={data} roles={activeRoles} fontFamily={fontFamilyById(figureFont)} taxonomyMode={taxonomyMode} humanColor={customScheme._human} aiColor={customScheme._ai} onSaveAsPDF={saveAsPDFWithFigure} />
+          <RadarChart ref={radarRef} data={data} roles={activeRoles} fontFamily={fontFamilyById(figureFont)} taxonomyMode={taxonomyMode} humanColor={customScheme._human} aiColor={customScheme._ai} projectName={projectName} onSaveAsPDF={saveAsPDFWithFigure} />
         </div>
       </div>
 
