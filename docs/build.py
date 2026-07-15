@@ -30,18 +30,26 @@ def load_svg_b64(path):
 def load_disclosure_svg_b64(here):
     path = os.path.join(here, "website.sifa.json.svg")
     if not os.path.exists(path):
-        return None
+        return None, None
     with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
+        raw = f.read()
+    # Pull the tool version straight out of the SVG's own embedded metadata
+    # (written by the tool at export time) instead of hardcoding a version
+    # string here, which drifts out of date every time the figure is
+    # regenerated under a newer release without anyone remembering this line.
+    m = re.search(rb'"toolVersion":\s*"([^"]+)"', raw)
+    version = m.group(1).decode() if m else None
+    return base64.b64encode(raw).decode(), version
 
 
-def build(fields, svg_b64, disclosure_b64=None):
+def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None):
     # Helper: highlight part of hero headline
     if disclosure_b64:
+        version_label = f"sIfA v{disclosure_version}" if disclosure_version else "sIfA"
         disclosure_section = f"""<section class="disclosure-section">
   <div class="container-wide">
     <h2>sIfA Statement</h2>
-    <p class="disclosure-note">This is the sIfA disclosure for the creation of this website only — it records how humans and AI interacted in building these pages, not in the sIfA tool itself. Generated with <a href="{fields["github_url"]}" style="color:var(--purple-mid);">sIfA v1.3</a>.</p>
+    <p class="disclosure-note">This is the sIfA disclosure for the creation of this website only — it records how humans and AI interacted in building these pages, not in the sIfA tool itself. Generated with <a href="{fields["github_url"]}" style="color:var(--purple-mid);">{version_label}</a>.</p>
     <div class="disclosure-figure">
       <img src="data:image/svg+xml;base64,{disclosure_b64}" alt="sIfA statement for the creation of this website">
     </div>
@@ -515,8 +523,8 @@ def main():
 
     fields = load_fields(CONTENT_PATH)
     svg_b64 = load_svg_b64(SVG_PATH)
-    disclosure_b64 = load_disclosure_svg_b64(HERE)
-    html = build(fields, svg_b64, disclosure_b64)
+    disclosure_b64, disclosure_version = load_disclosure_svg_b64(HERE)
+    html = build(fields, svg_b64, disclosure_b64, disclosure_version)
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(html)
