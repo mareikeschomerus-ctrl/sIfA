@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "kind": "sifa-tool-state",
+  "savedAt": "2026-07-15T22:11:09.533Z",
+  "projectName": "sIfA Tool",
+  "activeRoles": [
+    {
+      "id": "conceptualization",
+      "label": "Conceptualization",
+      "def": "Ideas; formulation or evolution of overarching research goals and aims.",
+      "bg": "#FFF1F2",
+      "accent": "#E11D48",
+      "border": "#FDA4AF"
+    },
+    {
+      "id": "data_curation",
+      "label": "Data Curation",
+      "def": "Management activities to annotate, scrub and maintain research data for initial use and later re-use.",
+      "bg": "#ECFEFF",
+      "accent": "#0E7490",
+      "border": "#67E8F9"
+    },
+    {
+      "id": "formal_analysis",
+      "label": "Formal Analysis",
+      "def": "Application of statistical, mathematical, computational, or other formal techniques to analyse or synthesize study data.",
+      "bg": "#FFF7ED",
+      "accent": "#EA580C",
+      "border": "#FDBA74"
+    },
+    {
+      "id": "funding_acquisition",
+      "label": "Funding Acquisition",
+      "def": "Acquisition of the financial support for the project leading to this publication.",
+      "bg": "#F0F9FF",
+      "accent": "#0369A1",
+      "border": "#7DD3FC"
+    },
+    {
+      "id": "investigation",
+      "label": "Investigation",
+      "def": "Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.",
+      "bg": "#FFFBEB",
+      "accent": "#B45309",
+      "border": "#FCD34D"
+    },
+    {
+      "id": "methodology",
+      "label": "Methodology",
+      "def": "Development or design of methodology; creation of models.",
+      "bg": "#EFF6FF",
+      "accent": "#2563EB",
+      "border": "#93C5FD"
+    },
+    {
+      "id": "project_admin",
+      "label": "Project Administration",
+      "def": "Management and coordination responsibility for the research activity planning and execution.",
+      "bg": "#FEFCE8",
+      "accent": "#A16207",
+      "border": "#FDE047"
+    },
+    {
+      "id": "resources",
+      "label": "Resources",
+      "def": "Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.",
+      "bg": "#EEF2FF",
+      "accent": "#4338CA",
+      "border": "#A5B4FC"
+    },
+    {
+      "id": "software",
+      "label": "Software",
+      "def": "Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.",
+      "bg": "#F7FEE7",
+      "accent": "#4D7C0F",
+      "border": "#BEF264"
+    },
+    {
+      "id": "supervision",
+      "label": "Supervision",
+      "def": "Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.",
+      "bg": "#F5F3FF",
+      "accent": "#6D28D9",
+      "border": "#C4B5FD"
+    },
+    {
+      "id": "validation",
+      "label": "Validation",
+      "def": "Verification of the overall replication/reproducibility of results/experiments and other research outputs.",
+      "bg": "#ECFDF5",
+      "accent": "#047857",
+      "border": "#6EE7B7"
+    },
+    {
+      "id": "visualization",
+      "label": "Visualization",
+      "def": "Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.",
+      "bg": "#FDF4FF",
+      "accent": "#A21CAF",
+      "border": "#F0ABFC"
+    },
+    {
+      "id": "writing_original",
+      "label": "Writing – original draft",
+      "def": "Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).",
+      "bg": "#F0FDFA",
+      "accent": "#0F766E",
+      "border": "#5EEAD4"
+    },
+    {
+      "id": "writing_review",
+      "label": "Writing – review & editing",
+      "def": "Critical review, commentary or revision of the published work by those from the original research group, including pre- or post-publication stages.",
+      "bg": "#FDF2F8",
+      "accent": "#BE185D",
+      "border": "#F9A8D4"
+    }
+  ],
+  "taxonomyMode": "credit",
+  "data": {
+    "conceptualization": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "Claude Opus 4.7, Sonnet 4.5 and 5",
+          "reason": "To sharpen and stress test the conceptual ideas behind sIf",
+          "extent": 1
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 1
+    },
+    "data_curation": {
+      "contributors": [],
+      "tool": "",
+      "reason": "",
+      "extent": 0,
+      "skipped": true
+    },
+    "formal_analysis": {
+      "contributors": [
+        {
+          "name": "A. Saleh",
+          "level": "Lead",
+          "tool": "Claude Sonnet 4.5",
+          "reason": "Statistical code review and debugging",
+          "extent": 1
+        },
+        {
+          "name": "M. Schomerus",
+          "level": "Support",
+          "tool": "",
+          "reason": "",
+          "extent": 0
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 0.5,
+      "skipped": true
+    },
+    "funding_acquisition": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "",
+          "reason": "",
+          "extent": 0
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 0,
+      "skipped": true
+    },
+    "investigation": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "",
+          "reason": "",
+          "extent": 0
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 0
+    },
+    "methodology": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "Claude Opus 4.7, Sonnet 4.5 and 5",
+          "reason": "To get feedback on feasibility of ideas\n",
+          "extent": 1
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 1
+    },
+    "project_admin": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "Claude Sonnet 4.5",
+          "reason": "Drafted progress reports and team correspondence",
+          "extent": 1
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 1,
+      "skipped": true
+    },
+    "resources": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "",
+          "reason": "",
+          "extent": 0
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 0,
+      "skipped": true
+    },
+    "software": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "",
+          "reason": "For all vibe coding; a more detailed description is in Saleh, Engy, and Mareike Schomerus. 2026. The sIfA tool for a Statement of Intellectual Fellowship and Accountability: An invitation to reflect on how humans and AI interact in producing knowledge (Groundwork 32 Thought Piece). Nairobi: Busara. doi: 10.62372/IUPB2137",
+          "extent": 2
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 2
+    },
+    "supervision": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "",
+          "reason": "",
+          "extent": 0
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 0
+    },
+    "validation": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "",
+          "reason": "",
+          "extent": 0
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 0
+    },
+    "visualization": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "Claude Opus 4.7, Sonnet 4.5 and 5",
+          "reason": "To turn all visual ideas into actual visuals",
+          "extent": 2
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 2
+    },
+    "writing_original": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "Claude Opus 4.7, Sonnet 4.5 and 5",
+          "reason": "All software documentation was drafted by AI. AI also worded the author questions. Introductory text entirely human",
+          "extent": 2
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 2
+    },
+    "writing_review": {
+      "contributors": [
+        {
+          "name": "M. Schomerus",
+          "level": "Sole",
+          "tool": "Claude Opus 4.7, Sonnet 4.5 and 5",
+          "reason": "Proofreading",
+          "extent": 1
+        }
+      ],
+      "tool": "",
+      "reason": "",
+      "extent": 1
+    }
+  },
+  "portfolio": [],
+  "figureFont": "montserrat"
+}

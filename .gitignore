@@ -5,6 +5,7 @@ Thumbs.db
 
 # ── Editor / backup files ──────────────────────────────────────
 *.bak
+*.bak-*
 *~
 *.swp
 .vscode/
@@ -21,7 +22,3 @@ _reference/
 
 # ── Historical builds — kept locally for reference, not shipped
 archive/
-
-# Empty leftover from the pre-flatten layout — delete in Finder when you get a chance
-example-data.sifa.json
-orig-data.sifa.json
