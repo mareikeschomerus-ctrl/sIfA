@@ -21,6 +21,7 @@
         "kind":         { "type": "string", "const": "sifa-tool-state",
                           "description": "Discriminator marking this as a full tool-state save." },
         "savedAt":      { "$ref": "#/$defs/savedAt" },
+        "projectName":  { "$ref": "#/$defs/projectName" },
         "activeRoles":  { "$ref": "#/$defs/activeRoles" },
         "taxonomyMode": { "$ref": "#/$defs/taxonomyMode" },
         "data": {
@@ -89,6 +90,11 @@
       "description": "Font family for the radar figure. The tool falls back to 'montserrat' if the value is missing or unknown.",
       "type": "string",
       "enum": ["montserrat", "georgia", "inter"]
+    },
+
+    "projectName": {
+      "description": "Free-text label for the project this sIfA belongs to (e.g. 'Op-Ed', 'WorldBank consultancy'), set via the toolbar's Project button. Empty string or absent means no project has been set.",
+      "type": "string"
     },
 
     "role": {
@@ -197,6 +203,8 @@
           "description": "User-supplied label for the entry (e.g. 'Paper draft, March 2026').",
           "type": "string"
         },
+        "projectName": { "$ref": "#/$defs/projectName",
+          "description": "Project this entry was tagged with in the tool at the time it was added or last updated, carried over automatically from the current draft's Project field." },
         "data": {
           "description": "Snapshot of the per-role data at the time the entry was added to the portfolio.",
           "type": "object",
@@ -211,7 +219,9 @@
           "description": "Which taxonomy mode this entry was captured under.",
           "type": "string",
           "enum": ["credit", "custom"]
-        }
+        },
+        "figureFont": { "$ref": "#/$defs/figureFont",
+          "description": "Figure font captured on this entry when it was last updated from the draft via the ↻ refresh action. Older entries may not have this." }
       }
     }
   }

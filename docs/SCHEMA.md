@@ -110,6 +110,7 @@ Required-ness depends on which `kind` the file claims to be. The table below sho
 | `data` | yes | — | Object keyed by role id, with one entry per role that has any content. |
 | `portfolio` | no | yes (≥1 entry) | List of saved sIfAs bundled together for comparison. In `sifa-tool-state` files it is an optional companion to the current draft; in `sifa-portfolio` files it is the entire payload. |
 | `figureFont` | no | — | `"montserrat"`, `"georgia"`, or `"inter"`. Defaults to `"montserrat"` when missing. |
+| `projectName` | no | — | Free-text label set via the toolbar's **Project** button (e.g. `"Op-Ed"`, `"WorldBank consultancy"`). Empty string or absent means unset. Portfolio entries created or refreshed from the draft carry this value onto `portfolio[].projectName`. |
 
 ---
 
