@@ -2251,6 +2251,15 @@ const _clearHandle = async (key) => {
   } catch (e) { /* nothing to clear, or IndexedDB unavailable */ }
 };
 
+// Save / Save As must only ever write sIfA's own working data — never let a
+// picked file with some other extension (e.g. an existing example.svg,
+// clicked instead of typing a new name) silently receive .json content.
+// The native picker's type filter only *suggests* .json; it does not
+// enforce it, since most OS file pickers still let you select any existing
+// file regardless of the accept list. This check is what actually blocks
+// it. SVG/JPEG/PDF/CSV output all lives under Export, never here.
+const _isJsonFilename = (name) => /\.json$/i.test(name || '');
+
 // For canonical CRediT role IDs, prefer the current ROLES entry so palette updates
 // take effect on restore. For custom roles (no matching canonical id), keep the saved entry.
 const _reconcileRoles = (saved) => {
@@ -2585,9 +2594,15 @@ function App() {
   useEffect(() => {
     (async () => {
       const h = await _getHandle('main');
-      if (h) { fileHandleRef.current = h; setSavedFileName(h.name); }
+      // Discard on sight rather than adopting it — a handle saved before
+      // the .json guard existed (or from any earlier bad save) should
+      // never surface in the UI as a save target, even for the moment
+      // before the next Save click would have caught it anyway.
+      if (h && _isJsonFilename(h.name)) { fileHandleRef.current = h; setSavedFileName(h.name); }
+      else if (h) { await _clearHandle('main'); }
       const ph = await _getHandle('portfolio');
-      if (ph) { portfolioFileHandleRef.current = ph; setSavedPortfolioFileName(ph.name); }
+      if (ph && _isJsonFilename(ph.name)) { portfolioFileHandleRef.current = ph; setSavedPortfolioFileName(ph.name); }
+      else if (ph) { await _clearHandle('portfolio'); }
     })();
   }, []);
   const _autosaveHasMounted = useRef(false);
@@ -2717,6 +2732,17 @@ function App() {
     // one and still hold write permission — this is what makes repeated
     // saves overwrite the same named file instead of prompting for a new
     // name every time. The user only sees the "Save as…" dialog once.
+    // A handle remembered from before the .json guard below existed (or
+    // one persisted via IndexedDB from an earlier browser session, which
+    // survives a page reload by design) could still be pointed at a
+    // non-.json file — checked here too, not just when a handle is first
+    // obtained, so a bad handle self-heals on the very next Save instead
+    // of silently continuing to overwrite the wrong file forever.
+    if (fileHandleRef.current && !_isJsonFilename(fileHandleRef.current.name)) {
+      fileHandleRef.current = null;
+      setSavedFileName(null);
+      _clearHandle('main');
+    }
     if (fileHandleRef.current) {
       try {
         const handle = fileHandleRef.current;
@@ -2750,6 +2776,10 @@ function App() {
           suggestedName: fname,
           types: [{ description: 'sIfA file', accept: { 'application/json': ['.sifa.json', '.json'] } }],
         });
+        if (!_isJsonFilename(handle.name)) {
+          alert(`Save only writes sIfA data files, and "${handle.name}" doesn't end in .json — nothing was written there.\n\nPlease choose (or type) a filename ending in .json, e.g. "${fname}". For SVG, JPEG, PDF, or CSV, use Export instead.`);
+          return;
+        }
         const writable = await handle.createWritable();
         await writable.write(json);
         await writable.close();
@@ -2807,7 +2837,14 @@ function App() {
     const json  = JSON.stringify(payload, null, 2);
 
     // Reuse the handle from a previous portfolio save in this session —
-    // same reasoning as saveToFile above.
+    // same reasoning as saveToFile above, including the self-healing
+    // check for a handle that predates the .json guard or was persisted
+    // from an earlier session.
+    if (portfolioFileHandleRef.current && !_isJsonFilename(portfolioFileHandleRef.current.name)) {
+      portfolioFileHandleRef.current = null;
+      setSavedPortfolioFileName(null);
+      _clearHandle('portfolio');
+    }
     if (portfolioFileHandleRef.current) {
       try {
         const handle = portfolioFileHandleRef.current;
@@ -2837,6 +2874,10 @@ function App() {
           suggestedName: fname,
           types: [{ description: 'sIfA portfolio file', accept: { 'application/json': ['.sifa.json', '.json'] } }],
         });
+        if (!_isJsonFilename(handle.name)) {
+          alert(`Save only writes sIfA data files, and "${handle.name}" doesn't end in .json — nothing was written there.\n\nPlease choose (or type) a filename ending in .json, e.g. "${fname}". For SVG, JPEG, PDF, or CSV, use Export instead.`);
+          return;
+        }
         const writable = await handle.createWritable();
         await writable.write(json);
         await writable.close();
@@ -3318,7 +3359,7 @@ function App() {
         {/* Export dropdown */}
         <div ref={exportMenuRef} style={{ position:"relative", flexShrink:0 }}>
           <button onClick={() => setExportMenuOpen(o => !o)}
-            title="Download SVG or JPEG exports"
+            title="Download SVG, JPEG, PDF, or CSV exports"
             style={{ padding:"6px 14px", borderRadius:6, border:"none",
               background:"#D97706", color:"white", fontWeight:700, fontSize:12.5, cursor:"pointer",
               display:"flex", alignItems:"center", gap:5 }}>
@@ -3333,6 +3374,7 @@ function App() {
               {[
                 { label:"Table & Figure — SVG",  action:() => radarRef.current?.downloadSVG('svg') },
                 { label:"Table & Figure — JPEG", action:() => radarRef.current?.downloadSVG('jpeg') },
+                { label:"Table & Figure — PDF",  action:saveAsPDFWithFigure },
                 { label:"Figure only — SVG",     action:() => radarRef.current?.downloadFigureOnly('svg') },
                 { label:"Figure only — JPEG",    action:() => radarRef.current?.downloadFigureOnly('jpeg') },
                 { label:"Export CSV",            action:exportCSV },
@@ -3356,7 +3398,6 @@ function App() {
         {/* Save dropdown */}
         <div ref={moreMenuRef} style={{ position:"relative", flexShrink:0 }}>
           <button onClick={() => setMoreMenuOpen(o => !o)}
-            title="Save options"
             title={savedFileName ? `Save will overwrite: ${savedFileName}` : "First save will ask where to save"}
             style={{ padding:"6px 14px", borderRadius:6, border:"none",
               background:"#059669", color:"white", fontWeight:700, fontSize:12.5, cursor:"pointer",
@@ -3377,7 +3418,6 @@ function App() {
               {[
                 { label:"💾 Save sIfA (.json)", action:saveToFile },
                 { label:"💾 Save As… (.json)",  action:saveAsNewFile },
-                { label:"📄 Save as PDF",        action:saveAsPDFWithFigure },
               ].map(item => (
                 <button key={item.label} onClick={() => { item.action(); setMoreMenuOpen(false); }}
                   style={{ display:"block", width:"100%", textAlign:"left",

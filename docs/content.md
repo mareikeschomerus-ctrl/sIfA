@@ -110,7 +110,7 @@ Export and attach
 [END]
 
 [FIELD: step3_body]
-Export your completed sIfA as an SVG figure, a table, or a CSV. Attach it as a supplementary file to your paper, report, or funder submission. Save your working file to return to it later.
+Export your completed sIfA as an SVG figure, a table, a PDF, or a CSV. Attach it as a supplementary file to your paper, report, or funder submission. Save your working file to return to it later.
 [END]
 
 ---
@@ -192,10 +192,14 @@ Autosave keeps your work in your browser's local storage, on your machine only
 [END]
 
 [FIELD: privacy_bullet_3]
-Closing the tab does not delete your work — reopen the file to continue
+Closing the tab does not lose your work — reopening the tool picks up automatically where you left off, and once you have saved a file, every later save writes straight back to that same file, with no re-uploading, ever
 [END]
 
 [FIELD: privacy_bullet_4]
+Name your sIfA after the project it belongs to, and start saving from day one — build it up gradually as the work develops, rather than reconstructing it all at the end
+[END]
+
+[FIELD: privacy_bullet_5]
 Your exported files are yours to keep, share, or attach as supplementary material. You can even track your AI interaction across multiple projects in your sIfA portfolio.
 [END]
 

@@ -479,6 +479,7 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None):
       <li>{fields["privacy_bullet_2"]}</li>
       <li>{fields["privacy_bullet_3"]}</li>
       <li>{fields["privacy_bullet_4"]}</li>
+      <li>{fields["privacy_bullet_5"]}</li>
     </ul>
   </div>
 </section>

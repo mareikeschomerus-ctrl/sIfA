@@ -2,6 +2,14 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
+## [Unreleased]
+
+### Fixed
+- **Save / Save As can no longer write sIfA data into a non-`.json` file.** The Save dialog's file-type filter only ever *suggested* `.json` — it never actually blocked picking an existing file with a different extension (this is how `example.svg` ended up holding raw `.sifa.json` content, three times). Save now checks the chosen filename and refuses to write (with a clear explanation) if it doesn't end in `.json` — checked in three places, not just when a handle is first obtained: on every reuse of a remembered handle, and once more on page load, so a handle remembered from *before* this fix (including one persisted via IndexedDB from an earlier browser session, which survives a reload by design) discards itself the moment it's next touched instead of silently continuing to overwrite the wrong file. Because that persistence survives a reload, **a browser tab left open from before this fix won't pick it up until reloaded.**
+
+### Changed
+- **"Save as PDF" moved from the Save menu into Export**, alongside SVG/JPEG/CSV — it's an output format, not `.json` working data, so it belonged there rather than implying it was part of "saving your file." Save now only ever contains the two `.json` actions.
+
 ## [1.4] — 2026-07-15
 
 ### Added
