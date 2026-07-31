@@ -120,7 +120,7 @@ What sIfA produces
 [END]
 
 [FIELD: figure_caption]
-A brain-shaped figure with one axis for all recorded contributor roles (CRediT or your own taxonomy). The orange field is human contribution; the purple shape is AI interaction; sparkles mark the extent of AI interaction on each axis. Below example shows the sIfA for the sIfA tool.
+sIfA produces two outputs: a detailed table recording human and AI interaction across each contributor role, and the sIfA figure — a quick-glance visual declaration. The brain-shaped figure has one axis per role (using CRediT or your own taxonomy). The orange field shows human contribution; the purple shape shows AI interaction; sparkles mark how extensively AI was involved on each axis. You can use both outputs as you see fit: integrate the table data into your own design, or export the table and figure together with your own colour choices. The example below shows the sIfA for the sIfA tool itself.
 [END]
 
 [FIELD: figure_alt]
