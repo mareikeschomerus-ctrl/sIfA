@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<title>Make your sIfA v1.4 — AI Contribution Statement</title>
+<title>Make your sIfA v1.4.1 — AI Contribution Statement</title>
 <script>
 /* ──────────────────────────────────────────────────────────────
    React v18.2.0
@@ -429,7 +429,7 @@ const { useState, useRef, useEffect } = React;
 // ── App version ──────────────────────────────────────────────
 // Single source of truth. Bumped on every released build; flows into
 // the citation block (About panel + SVG exports).
-const APP_VERSION = '1.4';
+const APP_VERSION = '1.4.1';
 const APP_YEAR = 2026;
 const CITATION_TEXT = `Schomerus, M. (${APP_YEAR}). sIfA Tool - Statement of Intellectual Fellowship and Accountability (Version ${APP_VERSION}) [Computer software]. Busara. https://doi.org/10.5281/zenodo.20285993`;
 
@@ -3409,6 +3409,12 @@ function App() {
     setData(JSON.parse(JSON.stringify(entry.data)));
     if (entry.figureFont) setFigureFont(entry.figureFont);
     setProjectName(entry.projectName || '');
+    // A portfolio entry is a different document from whatever Save was
+    // writing to — same reasoning as handleFileLoad, so the next Save asks
+    // where to put it instead of overwriting the previous file.
+    fileHandleRef.current = null;
+    setSavedFileName(null);
+    _clearHandle('main');
     setPortfolioOpen(false);
   };
 
@@ -3528,7 +3534,17 @@ function App() {
     a.click();
   };
 
-  const reset = () => { if (confirm("Clear all entries?")) setDataAndPush(initData(activeRoles)); };
+  // Clearing starts a new document: drop the project name and the
+  // remembered save file too, so the next Save asks for a new filename
+  // instead of silently overwriting the file of the sIfA just cleared.
+  const reset = () => {
+    if (!confirm("Clear all entries?\n\nThis also clears the project name, and the next Save will ask for a new filename.")) return;
+    setDataAndPush(initData(activeRoles));
+    setProjectName('');
+    fileHandleRef.current = null;
+    setSavedFileName(null);
+    _clearHandle('main');
+  };
 
   const anyFilled = activeRoles.some(r => {
     const d = data[r.id];
@@ -3623,9 +3639,13 @@ function App() {
         }}>
           <span>↻ Restored your previous sIfA from this browser. Use 💾 Save sIfA to keep a copy elsewhere.</span>
           <div style={{ display:"flex", alignItems:"center", gap:8, flexShrink:0 }}>
-            <button onClick={() => {
+            <button onClick={async () => {
               if (confirm("Start a fresh sIfA? This will clear the autosaved entries in this browser. Your downloaded .sifa.json files are not affected.")) {
                 try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+                // The remembered save file lives in IndexedDB and survives
+                // the reload — forget it first, or the fresh sIfA's first
+                // Save would overwrite the previous one's file.
+                await _clearHandle('main');
                 window.location.reload();
               }
             }}

@@ -4,8 +4,13 @@ All notable changes to the sIfA tool are documented in this file. The format fol
 
 ## [Unreleased]
 
+## [1.4.1] — 2026-11-07
+
+A bug-fix release. The first fix below (and the PDF move under Changed) had already reached people who downloaded v1.4 after 17 July 2026, because the v1.4 release files were re-uploaded with it that day without a version change; v1.4.1 records it properly and adds the second fix.
+
 ### Fixed
 - **Save / Save As can no longer write sIfA data into a non-`.json` file.** The Save dialog's file-type filter only ever *suggested* `.json` — it never actually blocked picking an existing file with a different extension (this is how `example.svg` ended up holding raw `.sifa.json` content, three times). Save now checks the chosen filename and refuses to write (with a clear explanation) if it doesn't end in `.json` — checked in three places, not just when a handle is first obtained: on every reuse of a remembered handle, and once more on page load, so a handle remembered from *before* this fix (including one persisted via IndexedDB from an earlier browser session, which survives a reload by design) discards itself the moment it's next touched instead of silently continuing to overwrite the wrong file. Because that persistence survives a reload, **a browser tab left open from before this fix won't pick it up until reloaded.**
+- **Starting a different sIfA no longer leaves Save pointed at the previous one's file.** Loading a full `.sifa.json` already reset Save's remembered file, but three other ways of switching documents did not: **↺ Reset** in the Save menu, the **↻ Start fresh** button on the restored-autosave notice, and **loading a portfolio entry into the draft**. After any of them, the next Save silently overwrote the file of the sIfA you had just moved away from (e.g. finish project A, reset, fill in project B, Save → A's file now holds B). All three now forget the remembered file, so the next Save asks where to put it. Reset also clears the project name, since it starts a new document, and its confirmation says so.
 
 ### Changed
 - **"Save as PDF" moved from the Save menu into Export**, alongside SVG/JPEG/CSV — it's an output format, not `.json` working data, so it belonged there rather than implying it was part of "saving your file." Save now only ever contains the two `.json` actions.

@@ -69,21 +69,26 @@ This reliably clears it.
 
 ## Releasing a new version of the tool
 
-When you publish a new version (e.g. v1.4), update two fields in `content.md`:
+When you publish a new version (e.g. v1.4.1), update two fields in `content.md`:
 
 ```
-[FIELD: download_button_online_label]
-Download online version
-[END]
-
 [FIELD: download_url_online]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.html
 [END]
 
 [FIELD: download_url_offline]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.offline.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.offline.html
 [END]
 ```
+
+**Timing:** these links name the version, so the moment a new release becomes
+"latest" the old links stop working until the site is rebuilt. Push the rebuilt
+site and create the GitHub Release back to back, not hours apart.
+
+**If you fix something after a release, cut a new version.** Re-uploading files
+to an existing release leaves the git tag, the changelog and the Zenodo archive
+describing different code from what people download (this happened with v1.4 —
+see the v1.4.1 changelog entry).
 
 **On the offline filename:** GitHub's release-asset upload strips parentheses from
 filenames entirely — it doesn't substitute them with anything, it just deletes them.
