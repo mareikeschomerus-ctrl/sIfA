@@ -316,6 +316,9 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_ve
     }}
     .privacy-list li::before {{ content: "✓"; color: #7DDBB8; font-weight: 700; flex-shrink: 0; }}
 
+    .about-section {{ background: var(--white); text-align: center; }}
+    .about-section h2 {{ font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }}
+    .about-section p {{ max-width: 560px; margin: 0 auto; font-size: 0.97rem; }}
     .citation-section {{ background: var(--slate-50); }}
     .citation-section h2 {{
       font-size: 1.6rem; font-weight: 700;
@@ -402,6 +405,7 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_ve
     <a href="#figure">Example</a>
     <a href="#who">Who is it for</a>
     <a href="#citation">Cite</a>
+    <a href="#about">About</a>
     <a href="{fields["github_url"]}">GitHub</a>
   </div>
 </nav>
@@ -528,6 +532,13 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_ve
     <p style="font-size:0.9rem;color:var(--slate-500);margin-bottom:0.5rem;margin-top:1.5rem;">Cite the paper:</p>
     <div class="cite-block">{fields["paper_citation"]}</div>
     <p class="citation-note">{fields["citation_note"]}</p>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="container">
+    <h2>{fields["about_heading"]}</h2>
+    <p>{fields["about_text"]}</p>
   </div>
 </section>
 

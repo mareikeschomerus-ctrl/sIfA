@@ -26,7 +26,7 @@ humans and AI interacted
 [END]
 
 [FIELD: hero_subheading]
-sIfA gives researchers a structured, standardised way to record AI interaction across every stage of a research project — anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy.
+sIfA gives people creating knowledge a structured, standardised way to record AI interaction across every stage of knowledge creation. For research, this is anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy, including for creative projects or practical work that benefits from AI accountability.
 [END]
 
 [FIELD: download_button_online_label]
@@ -219,6 +219,16 @@ A machine-readable citation file (CITATION.cff) is included in the repository an
 
 [FIELD: paper_citation]
 Saleh, Engy and Mareike Schomerus. The sIfA tool for a Statement of Intellectual Fellowship and Accountability: An invitation to reflect on how humans and AI interact in producing knowledge. (Groundwork 32 Thought Piece). Nairobi: Busara. doi: 10.62372/IUPB2137. <a class="doi-link" href="https://busara.global/our-works/the-sifa-tool-for-a-statement-of-intellectual-fellowship-and-accountability/">Read the paper</a>
+[END]
+
+---
+
+[FIELD: about_heading]
+About
+[END]
+
+[FIELD: about_text]
+sIfA was developed by Mareike Schomerus and Engy Saleh at Busara.
 [END]
 
 ---
