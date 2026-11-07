@@ -38,7 +38,7 @@ Requires internet. Loads faster. Recommended for most users.
 [END]
 
 [FIELD: download_url_online]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.html
 [END]
 
 [FIELD: download_button_offline_label]
@@ -50,7 +50,7 @@ No internet needed after download. For fieldwork or low-connectivity settings.
 [END]
 
 [FIELD: download_url_offline]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.offline.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.offline.html
 [END]
 
 [FIELD: hero_footnote]

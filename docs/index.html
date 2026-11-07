@@ -108,6 +108,12 @@
       white-space: nowrap;
     }
     .btn-download:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-text {
+      display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;
+    }
+    .btn-version {
+      font-size: 0.78rem; font-weight: 600; opacity: 0.85; margin-top: 0.2rem;
+    }
     .btn-download-secondary {
       background: transparent;
       border: 2px solid rgba(255,255,255,0.6);
@@ -315,14 +321,16 @@
     <p class="hero-sub">sIfA gives researchers a structured, standardised way to record AI interaction across every stage of a research project — anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy.</p>
     <div class="download-pair">
       <div class="download-option">
-        <a class="btn-download" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.html">
-          &#8595;&nbsp;Download online version
+        <a class="btn-download" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.html">
+          <span aria-hidden="true">&#8595;</span>
+          <span class="btn-text">Download online version<span class="btn-version">Latest version: 1.4.1</span></span>
         </a>
         <span class="download-note">Requires internet. Loads faster. Recommended for most users.</span>
       </div>
       <div class="download-option">
-        <a class="btn-download btn-download-secondary" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.offline.html">
-          &#8595;&nbsp;Download offline version
+        <a class="btn-download btn-download-secondary" href="https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.offline.html">
+          <span aria-hidden="true">&#8595;</span>
+          <span class="btn-text">Download offline version<span class="btn-version">Latest version: 1.4.1</span></span>
         </a>
         <span class="download-note">No internet needed after download. For fieldwork or low-connectivity settings.</span>
       </div>

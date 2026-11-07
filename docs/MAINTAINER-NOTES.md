@@ -69,21 +69,34 @@ This reliably clears it.
 
 ## Releasing a new version of the tool
 
-When you publish a new version (e.g. v1.4.1), update two fields in `content.md`:
+The website's download buttons never need editing. They point at
+version-free filenames on GitHub's "latest release":
 
 ```
-[FIELD: download_url_online]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.html
-[END]
-
-[FIELD: download_url_offline]
-https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.v1.4.1.offline.html
-[END]
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.html
+https://github.com/mareikeschomerus-ctrl/sIfA/releases/latest/download/Make.your.sIfA.offline.html
 ```
 
-**Timing:** these links name the version, so the moment a new release becomes
-"latest" the old links stop working until the site is rebuilt. Push the rebuilt
-site and create the GitHub Release back to back, not hours apart.
+So **every release must upload four files**: the two versioned builds, plus a
+copy of each under the version-free name. From the repo root, for version X.Y.Z:
+
+```bash
+mkdir -p /tmp/sifa-stable
+cp "Make your sIfA vX.Y.Z.html" "/tmp/sifa-stable/Make your sIfA.html"
+cp "Make your sIfA vX.Y.Z (offline).html" "/tmp/sifa-stable/Make your sIfA (offline).html"
+gh release create vX.Y.Z --verify-tag --title "vX.Y.Z" --notes-file <notes> \
+  "Make your sIfA vX.Y.Z.html" "Make your sIfA vX.Y.Z (offline).html" \
+  "/tmp/sifa-stable/Make your sIfA.html" "/tmp/sifa-stable/Make your sIfA (offline).html"
+```
+
+If a release goes out without the two version-free copies, both website buttons
+404 until they are added (`gh release upload vX.Y.Z <the two files>`).
+
+The "Latest version: …" line on the buttons fills itself in: `build.py` reads
+the latest release's tag from GitHub when you rebuild. So after a release,
+rebuild and push the site once so the buttons show the new number. If GitHub
+can't be reached, the build falls back to the version inside the newest tool
+file and prints a warning.
 
 **If you fix something after a release, cut a new version.** Re-uploading files
 to an existing release leaves the git tag, the changelog and the Zenodo archive
@@ -92,13 +105,11 @@ see the v1.4.1 changelog entry).
 
 **On the offline filename:** GitHub's release-asset upload strips parentheses from
 filenames entirely — it doesn't substitute them with anything, it just deletes them.
-`Make your sIfA v1.4 (offline).html` becomes the asset `Make.your.sIfA.v1.4.offline.html`
+`Make your sIfA (offline).html` becomes the asset `Make.your.sIfA.offline.html`
 (spaces become dots as usual, but `(` and `)` just vanish — no dot in their place). The
 URL above already accounts for this; don't add `%28`/`%29` around "offline" or the
 download link will 404 even though the release itself uploaded fine. Confirmed by testing
 against the actual v1.4 release — the parenthesised URL 404s, this one 200s.
-
-Then rebuild and push.
 
 ---
 
