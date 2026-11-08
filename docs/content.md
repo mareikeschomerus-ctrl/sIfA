@@ -76,7 +76,7 @@ AI interactions in knowledge creation are expanding faster than conventions for 
 [END]
 
 [FIELD: what_para_2]
-With the sIfA tool you map your AI interaction onto the 14 <a href="https://credit.niso.org" style="color:var(--purple-mid);">CRediT contributor roles</a> — the standard that most major journals already use to record who did what. For each role, you record for what type of work AI was used and which AI tool, how extensively (on a simple three point scale: not at all, little, a lot), and a short audit-trail note. The result is a table and a distinctive figure you can attach to any publication, report, or institutional disclosure form. The sIfA figure reflects a commitment to reflection and transparency when it comes to AI in knowledge creation; the table acts as a detailed track record that supports learning for all.
+With the sIfA tool you map your AI interaction onto roles that you define. For research, sIfA is set up with the 14 <a href="https://credit.niso.org" style="color:var(--purple-mid);">CRediT contributor roles</a> — the standard that most major journals already use to record who did what. For each role, you record for what type of work AI was used and which AI tool, how extensively (on a simple three point scale: not at all, little, a lot), and a short audit-trail note. The result is a table and a distinctive figure you can attach to any publication, report, or institutional disclosure form. The sIfA figure reflects a commitment to reflection and transparency when it comes to AI in knowledge creation; the table acts as a detailed track record that supports learning for all.
 [END]
 
 [FIELD: what_para_3]

@@ -92,11 +92,12 @@ gh release create vX.Y.Z --verify-tag --title "vX.Y.Z" --notes-file <notes> \
 If a release goes out without the two version-free copies, both website buttons
 404 until they are added (`gh release upload vX.Y.Z <the two files>`).
 
-The "Latest version: …" line on the buttons fills itself in: `build.py` reads
-the latest release's tag from GitHub when you rebuild. So after a release,
-rebuild and push the site once so the buttons show the new number. If GitHub
-can't be reached, the build falls back to the version inside the newest tool
-file and prints a warning.
+The "Latest version: …" and "Released …" lines on the buttons fill themselves
+in: `build.py` reads the latest release's tag and publication date from GitHub
+when you rebuild. So after a release, rebuild and push the site once so the
+buttons show the new number and date. If GitHub can't be reached, the build
+falls back to the version inside the newest tool file (dated from its git tag)
+and prints a warning.
 
 **If you fix something after a release, cut a new version.** Re-uploading files
 to an existing release leaves the git tag, the changelog and the Zenodo archive

@@ -3,7 +3,7 @@ build.py — regenerates index.html from content.md
 Run: python3 build.py
 """
 
-import base64, glob, json, re, os, sys, urllib.request
+import base64, glob, json, re, os, subprocess, sys, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LATEST_RELEASE_API = "https://api.github.com/repos/mareikeschomerus-ctrl/sIfA/releases/latest"
@@ -43,16 +43,36 @@ def load_disclosure_svg_b64(here):
     return base64.b64encode(raw).decode(), version
 
 
+def _long_date(iso_date):
+    # "2026-11-07" → "7 November 2026"
+    y, m, d = (int(p) for p in iso_date[:10].split("-"))
+    months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"]
+    return f"{d} {months[m - 1]} {y}"
+
+
+def _tag_date(version):
+    # Date of the git tag vX.Y.Z, or None if there is no such tag.
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", f"v{version}"],
+                             cwd=HERE, capture_output=True, text=True, timeout=10)
+        return out.stdout.strip() or None
+    except Exception:
+        return None
+
+
 def latest_tool_version(here):
     # The download buttons point at GitHub's "latest release", so the version
-    # shown on them is read from that same release rather than typed into
-    # content.md — it can't drift from what the buttons actually download.
+    # and release date shown on them are read from that same release rather
+    # than typed into content.md — they can't drift from what the buttons
+    # actually download. Returns (version, "7 November 2026" or None).
     # Offline fallback: APP_VERSION from the highest-numbered tool file in
-    # the repo root (correct as long as files are only bumped at release).
+    # the repo root (correct as long as files are only bumped at release),
+    # dated from its git tag when one exists.
     try:
         with urllib.request.urlopen(LATEST_RELEASE_API, timeout=10) as r:
-            tag = json.load(r)["tag_name"]
-        return tag.lstrip("v")
+            release = json.load(r)
+        return release["tag_name"].lstrip("v"), _long_date(release["published_at"])
     except Exception as e:
         print(f"Warning: could not read the latest GitHub release ({e}); "
               "using the version in the newest tool file instead.")
@@ -67,10 +87,16 @@ def latest_tool_version(here):
     if not candidates:
         print("Error: no tool version found for the download buttons.")
         sys.exit(1)
-    return max(candidates, key=lambda v: [int(p) for p in v.split(".")])
+    version = max(candidates, key=lambda v: [int(p) for p in v.split(".")])
+    tag_date = _tag_date(version)
+    return version, (_long_date(tag_date) if tag_date else None)
 
 
-def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_version=""):
+def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_version="", release_date=None):
+    # Version line, plus a release-date line beneath it when the date is known
+    version_html = f'<span class="btn-version">Latest version: {tool_version}</span>'
+    if release_date:
+        version_html += f'<span class="btn-version btn-released">Released {release_date}</span>'
     # Helper: highlight part of hero headline
     if disclosure_b64:
         version_label = f"sIfA v{disclosure_version}" if disclosure_version else "sIfA"
@@ -206,6 +232,7 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_ve
     .btn-version {{
       font-size: 0.78rem; font-weight: 600; opacity: 0.85; margin-top: 0.2rem;
     }}
+    .btn-released {{ margin-top: 0.05rem; font-weight: 500; }}
     .btn-download-secondary {{
       background: transparent;
       border: 2px solid rgba(255,255,255,0.6);
@@ -419,14 +446,14 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_ve
       <div class="download-option">
         <a class="btn-download" href="{fields["download_url_online"]}">
           <span aria-hidden="true">&#8595;</span>
-          <span class="btn-text">{fields["download_button_online_label"]}<span class="btn-version">Latest version: {tool_version}</span></span>
+          <span class="btn-text">{fields["download_button_online_label"]}{version_html}</span>
         </a>
         <span class="download-note">{fields["download_button_online_note"]}</span>
       </div>
       <div class="download-option">
         <a class="btn-download btn-download-secondary" href="{fields["download_url_offline"]}">
           <span aria-hidden="true">&#8595;</span>
-          <span class="btn-text">{fields["download_button_offline_label"]}<span class="btn-version">Latest version: {tool_version}</span></span>
+          <span class="btn-text">{fields["download_button_offline_label"]}{version_html}</span>
         </a>
         <span class="download-note">{fields["download_button_offline_note"]}</span>
       </div>
@@ -572,13 +599,14 @@ def main():
     fields = load_fields(CONTENT_PATH)
     svg_b64 = load_svg_b64(SVG_PATH)
     disclosure_b64, disclosure_version = load_disclosure_svg_b64(HERE)
-    tool_version = latest_tool_version(HERE)
-    html = build(fields, svg_b64, disclosure_b64, disclosure_version, tool_version)
+    tool_version, release_date = latest_tool_version(HERE)
+    html = build(fields, svg_b64, disclosure_b64, disclosure_version, tool_version, release_date)
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(html)
 
-    print(f"Built index.html ({len(html):,} bytes) — download buttons show v{tool_version}")
+    print(f"Built index.html ({len(html):,} bytes) — download buttons show v{tool_version}"
+          + (f", released {release_date}" if release_date else ", no release date found"))
     print(f"Open it with: open \"{OUTPUT_PATH}\"")
 
 
