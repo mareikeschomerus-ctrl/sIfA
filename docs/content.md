@@ -26,7 +26,7 @@ humans and AI interacted
 [END]
 
 [FIELD: hero_subheading]
-sIfA gives people creating knowledge a structured, standardised way to record AI interaction across every stage of knowledge creation. For research, this is anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy, including for creative projects or practical work that benefits from AI accountability.
+sIfA gives people creating knowledge a structured, standardised way to record AI interaction across every stage of knowledge creation. For research, this is anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy, including for creative projects or practical work that benefit from AI accountability.
 [END]
 
 [FIELD: download_button_online_label]
@@ -102,7 +102,7 @@ Fill in your disclosure, ideally from the start of a project to keep an up-to-da
 [END]
 
 [FIELD: step2_body]
-If using the CRediT framework, work through the 14 CRediT roles. For each role, record who contributed, which AI tool was used (if any), how extensively, and a brief note. Or use the built-in AI agent — it interviews you role by role in plain language. If CRediT does not work for you: enter or build your own taxonomy. 
+If using the CRediT framework, work through the 14 CRediT roles. For each role, record who contributed, if AI was used, which AI tool was used, how extensively, and a brief note. Or use the built-in AI agent, which interviews you role by role in plain language. If CRediT does not work for you, you can enter or build your own taxonomy. 
 [END]
 
 [FIELD: step3_heading]
@@ -134,11 +134,11 @@ Who is it for
 [END]
 
 [FIELD: who_card1_heading]
-Researchers, teachers, creators, students — anyone who interacts with AI in producing an output
+Anyone who interacts with AI in producing an output: Researchers, teachers, creators, or students.
 [END]
 
 [FIELD: who_card1_body]
-Anyone who interacts with AI at any point in a project — for analysis, writing, coding, literature search, brainstorming, project management — and seeks to declare it clearly and consistently.
+Anyone who interacts with AI at any point in a project (regardless of whether this is for analysis, writing, coding, literature search, brainstorming, project management) and seeks to declare it clearly and consistently.
 [END]
 
 [FIELD: who_card2_heading]
@@ -192,11 +192,11 @@ Autosave keeps your work in your browser's local storage, on your machine only
 [END]
 
 [FIELD: privacy_bullet_3]
-Closing the tab does not lose your work — reopening the tool picks up automatically where you left off, and once you have saved a file, every later save writes straight back to that same file, with no re-uploading, ever
+Closing the tab does not lose your work. Reopening the tool picks up automatically where you left off, and once you have saved a file, every later save writes straight back to that same file, with no re-uploading, ever
 [END]
 
 [FIELD: privacy_bullet_4]
-Name your sIfA after the project it belongs to, and start saving from day one — build it up gradually as the work develops, rather than reconstructing it all at the end
+Name your sIfA after the project it belongs to, and start saving from day one. Build it up gradually as the work develops, rather than reconstructing it all at the end.
 [END]
 
 [FIELD: privacy_bullet_5]
