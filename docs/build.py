@@ -461,7 +461,7 @@ def build(fields, svg_b64, disclosure_b64=None, disclosure_version=None, tool_ve
     <p class="hero-footnote">{fields["hero_footnote"]}</p>
     <div class="badge-row">
       <a href="{fields["zenodo_doi"]}">
-        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20285993.svg" alt="DOI badge">
+        <img src="doi-badge.svg" alt="DOI badge">
       </a>
     </div>
   </div>
