@@ -10,7 +10,9 @@
 | `website.sifa.json.svg` | `docs/website.sifa.json.svg` | The sIfA disclosure figure for the website itself |
 | `example.svg` | Root of repo | The sIfA example figure shown on the page — one level up from docs/ |
 
-The live page is at: `https://mareikeschomerus-ctrl.github.io/sIfA`
+The live page is at: `https://www.sifatool.org` (custom domain since 10 November 2026; the old `mareikeschomerus-ctrl.github.io/sIfA` address forwards there).
+
+The domain is registered at IONOS, set to DNS (not forwarding). The A record for `@` and the record for `www` point at GitHub Pages (185.199.108.153). `docs/CNAME` holds `www.sifatool.org`: don't delete it, or the custom domain is dropped. Leave the MX/TXT records alone; they run email for sifatool.org.
 
 ---
 
