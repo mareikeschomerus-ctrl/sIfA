@@ -2,7 +2,33 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
-## [Unreleased]
+## [1.5] — 2026-11-13
+
+### Added
+- **Figure without text** (SVG and JPEG): the figure with its title, project name and Human/AI legend, without the counts line, the accountability statement or the citation footer.
+- **Table only** (SVG and JPEG): the formatted table with its title bar and footer (citation, licence, CRediT line, generated date), without the figure.
+
+### Changed
+- **Refined export design** (Table & Figure, Table only, Figure only, Figure without text, and the figure in the PDF). Same layout, wording and text sizes; quieter styling: white table header with a single dark rule and slate-grey column titles; no alternating row stripes and no vertical column lines; a thinner, rounded role-colour bar; rounder extent boxes with a faint empty box; the footer (citation, licence, CRediT, date) in slate grey; on the figure, spacing instead of dividing lines, a semibold caption heading and round legend dots. The PDF's table is the on-screen table and is unchanged.
+- **Downloads regrouped.** The figure panel's nine download buttons become one main button (Download Table & Figure, SVG) plus a "More downloads" menu grouped into Table & Figure, Figure (with text / without text) and Table, each with its formats. The toolbar's Export menu uses the same groups, plus Data (CSV), and now opens towards the left so it stays on screen in narrow windows.
+- **New text under the figure, in every export** (Table & Figure, Figure only, and the figure in the PDF): "AI use is self-reported. After using any tools or services, the author(s) reviewed and edited the content as needed and take(s) full responsibility for the content of the publication." followed by a **www.sifatool.org** link. The statement is now stored once and word-wrapped to each export's width, instead of being hand-split into lines per export.
+- **New text under the table** (and under the citation block of the Figure-only export): "This sIfA was created using [citation]. www.sifatool.org.", then "Released under the Apache License 2.0", then "Inspired by the Contributor Role Taxonomy (CRediT) at https://credit.niso.org." (when CRediT is the active taxonomy), then the generated date. The two CRediT lines that sat under the figure move here as this single line; the busara.global / GitHub line is dropped from the exports.
+- **About panel:** "The sIfA tool can be used and downloaded at" now names www.sifatool.org instead of www.busara.global (the GitHub link stays).
+
+### Security
+All four issues predate v1.5. Each needs a doctored `.sifa.json` file (or unusual pasted text) to be exploited; none lets data leave the computer.
+- **Exported SVGs can no longer carry a hidden script.** Text containing `]]>` ended the SVG's embedded data block early, so a doctored file could plant a script in an exported SVG that would run when the SVG was opened in a browser. The sequence is now split safely; the text itself is kept exactly as typed.
+- **Colours from loaded files are checked.** Custom-role colours (and the custom Human/AI colours) are written into exported SVGs; only hex codes such as `#E11D48` and plain colour names are now accepted, anything else falls back to a default.
+- **Online version verifies its libraries.** The three libraries loaded from cdnjs now carry integrity fingerprints (cdnjs's published SHA-512 values), so the browser refuses a tampered file instead of running it. `embed-libraries.py` accepts the extra attributes when building the offline version.
+- **CSV export defuses spreadsheet formulas.** Cells starting with `=`, `+`, `-` or `@` get a leading apostrophe so spreadsheet apps show them as text instead of running them.
+- **The browser now enforces "nothing leaves your computer".** A Content-Security-Policy in the page blocks every outgoing connection (`connect-src 'none'`) and allows nothing to load from elsewhere except the three cdnjs libraries in the online version. The offline version contacts no server at all.
+
+### Privacy
+- **No more Google Fonts.** Montserrat and Inter (both SIL Open Font License 1.1) are now built into the file, Western and Central/Eastern European character sets, weights 400–800. The tool looks the same, but opening it no longer sends the user's IP address to Google, and the offline version now really shows these fonts offline (it previously fell back to system fonts without a connection). Adds about 310 KB to each file.
+
+### Fixed
+- **Saving a portfolio no longer counts as saving your draft.** It reset the "you haven't saved in a while" reminder, although a portfolio file holds only the portfolio entries, not the draft.
+- **Long project names no longer run off the figure.** The "Project: …" subtitle is shortened with "…" to fit the figure's width (the full name stays in the file, the table and the print banner, and shows on hover in exported SVGs). Very long unbroken names also wrap in the live figure panel.
 
 ## [1.4.1] — 2026-11-07
 

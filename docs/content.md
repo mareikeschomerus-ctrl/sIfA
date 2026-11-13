@@ -210,7 +210,7 @@ How to cite sIfA
 [END]
 
 [FIELD: citation_text]
-Schomerus, Mareike. <em>sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).</em> Version 1.4.1. 2026. Busara. <a class="doi-link" href="https://doi.org/10.5281/zenodo.20285993">https://doi.org/10.5281/zenodo.20285993</a>
+Schomerus, Mareike. <em>sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).</em> Version 1.5. 2026. Busara. <a class="doi-link" href="https://doi.org/10.5281/zenodo.20285993">https://doi.org/10.5281/zenodo.20285993</a>
 [END]
 
 [FIELD: citation_note]

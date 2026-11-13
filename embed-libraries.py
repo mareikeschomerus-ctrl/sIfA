@@ -108,7 +108,8 @@ def wrap_with_licence(lib, js: str) -> str:
 
 def embed(html: str, libs_with_js):
     for lib, js in libs_with_js:
-        pattern = r'<script\s+src="[^"]*' + re.escape(lib["name"]) + r'[^"]*"></script>'
+        # [^>]* allows extra attributes after src (integrity, crossorigin, …)
+        pattern = r'<script\s+src="[^"]*' + re.escape(lib["name"]) + r'[^"]*"[^>]*></script>'
         replacement = wrap_with_licence(lib, js)
         new_html, n = re.subn(pattern, lambda _: replacement, html)
         if n == 0:
