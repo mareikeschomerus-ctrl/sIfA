@@ -15,7 +15,7 @@ The tool is a single self-contained HTML file. No install, no server, no build s
 
 AI use in research is expanding faster than the conventions for declaring it. Free-text disclosures tend to be inconsistent and hard to compare across papers. sIfA gives authors a shared, structured format anchored in a standard that journals already understand — the [CRediT Contributor Roles Taxonomy](https://credit.niso.org), a NISO-maintained list of 14 contributor roles used across academic publishing.
 
-By naming AI tools alongside human contributors and recording, per role, *what they did* and *how extensively the work depended on them*, sIfA invites authors to think of AI use as a contribution to be credited, not a footnote to be downplayed. The human author still signs off on the work — that is the "accountability" half of the name.
+By naming AI tools alongside human contributors and recording, per role, *what they did* and *how extensively the work depended on them*, sIfA invites authors to think of AI use as an interaction to be disclosed with some detail, not a footnote to be downplayed. The human author still signs off on the work — that is the "accountability" half of the name.
 
 ---
 
@@ -60,7 +60,7 @@ The interface is a single page with three parts:
 
 - **A header** with action buttons — Save, Load, Reset, export options, the About panel.
 - **A table** with one row per CRediT contributor role (14 rows by default). Each row records who performed the role, how AI was used in it, the tool used, and an audit-trail note.
-- **A figure** — the "sIfA figure" — that renders as a brain-shaped silhouette with one axis for all recorded contributor roles, dividing evenly across them (a completely blank sIfA falls back to showing every active role rather than an empty chart). The orange field is the human contribution; the purple inner shape is the AI contribution; small purple sparkles mark the extent of AI involvement on each role's axis.
+- **A figure** — the "sIfA figure" — that renders as a brain-shaped silhouette with one axis for all recorded contributor roles, dividing evenly across them (a completely blank sIfA falls back to showing every active role rather than an empty chart). The orange field shows the human side and the purple inner shape the AI side of the human/AI interaction; small purple sparkles mark the extent of AI involvement on each role's axis.
 
 Both the table and the figure can be exported, either together as one composite SVG or as figure-only.
 
@@ -251,7 +251,7 @@ Both files contain the same JSX. The offline build is roughly 17× larger (aroun
 
 If you use sIfA in published work, please cite it using the form below. The DOI resolves via Zenodo and always points to the latest release.
 
-> Schomerus, Mareike. *sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).* Version 1.5. 2026. Busara. https://doi.org/10.5281/zenodo.20285993
+> Schomerus, Mareike. *sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).* Version 1.5.1. 2026. Busara. https://doi.org/10.5281/zenodo.20285993
 
 A machine-readable version of the same information is in [`CITATION.cff`](CITATION.cff), which GitHub uses to populate the "Cite this repository" button.
 

@@ -7,7 +7,7 @@
     <sifa:AIContributionStatement>
       <![CDATA[{
   "schema": "CRediT Contributor Role Taxonomy — https://credit.niso.org/",
-  "tool": "sIfA AI Contribution Statement Tool",
+  "tool": "sIfA Human/AI Interaction Statement Tool",
   "toolVersion": "1.5",
   "doi": "10.5281/zenodo.20285993",
   "generated": "2026-11-13T11:32:27.539Z",

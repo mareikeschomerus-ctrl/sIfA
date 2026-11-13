@@ -120,11 +120,11 @@ What sIfA produces
 [END]
 
 [FIELD: figure_caption]
-sIfA produces two outputs: a detailed table recording human and AI interaction across each contributor role, and the sIfA figure — a quick-glance visual declaration. The brain-shaped figure has one axis per role (using CRediT or your own taxonomy). The orange field shows human contribution; the purple shape shows AI interaction; sparkles mark how extensively AI was involved on each axis. You can use both outputs as you see fit: integrate the table data into your own design, or export the table and figure together with your own colour choices. The example below shows the sIfA for the sIfA tool itself.
+sIfA produces two outputs: a detailed table recording human and AI interaction across each contributor role, and the sIfA figure — a quick-glance visual declaration. The brain-shaped figure has one axis per role (using CRediT or your own taxonomy). The orange field shows the human side and the purple shape the AI side of the human/AI interaction; sparkles mark how extensively AI was involved on each axis. You can use both outputs as you see fit: integrate the table data into your own design, or export the table and figure together with your own colour choices. The example below shows the sIfA for the sIfA tool itself.
 [END]
 
 [FIELD: figure_alt]
-Example sIfA figure showing AI contribution across CRediT roles
+Example sIfA figure showing human/AI interaction across CRediT roles
 [END]
 
 ---
@@ -210,7 +210,7 @@ How to cite sIfA
 [END]
 
 [FIELD: citation_text]
-Schomerus, Mareike. <em>sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).</em> Version 1.5. 2026. Busara. <a class="doi-link" href="https://doi.org/10.5281/zenodo.20285993">https://doi.org/10.5281/zenodo.20285993</a>
+Schomerus, Mareike. <em>sIfA Tool (Tool to create a Statement of Intellectual Fellowship and Accountability).</em> Version 1.5.1. 2026. Busara. <a class="doi-link" href="https://doi.org/10.5281/zenodo.20285993">https://doi.org/10.5281/zenodo.20285993</a>
 [END]
 
 [FIELD: citation_note]

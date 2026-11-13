@@ -12,7 +12,7 @@ A few principles before the templates:
 
 ## Short citation (reference lists and bibliographies)
 
-> Schomerus, M. (2026). *sIfA Tool — Statement of Intellectual Fellowship and Accountability* (Version 1.5) [Computer software]. Busara. https://doi.org/10.5281/zenodo.20285993
+> Schomerus, M. (2026). *sIfA Tool — Statement of Intellectual Fellowship and Accountability* (Version 1.5.1) [Computer software]. Busara. https://doi.org/10.5281/zenodo.20285993
 
 The DOI above is a *concept* DOI that always resolves to the latest version of the tool. Each released version also has its own version-specific DOI on Zenodo; use the concept DOI unless you need to pin to a precise version.
 
@@ -22,7 +22,7 @@ The DOI above is a *concept* DOI that always resolves to the latest version of t
 @software{Schomerus_sIfA_2026,
   author    = {Schomerus, Mareike},
   title     = {{sIfA Tool — Statement of Intellectual Fellowship and Accountability}},
-  version   = {1.5},
+  version   = {1.5.1},
   year      = {2026},
   month     = {11},
   publisher = {Busara},
@@ -37,19 +37,19 @@ A machine-readable equivalent lives in [`CITATION.cff`](CITATION.cff); GitHub us
 
 ## In-text mention (short form)
 
-> The AI contribution statement for this paper was produced using the sIfA Tool (Schomerus, 2026).
+> The human/AI interaction statement for this paper was produced using the sIfA Tool (Schomerus, 2026).
 
 ---
 
 ## Methods or acknowledgements paragraph (full form)
 
-> The structured statement of AI use accompanying this work was produced with the sIfA Tool — *Statement of Intellectual Fellowship and Accountability* (Schomerus, 2026), a browser-based tool that maps each contribution onto the 14 CRediT contributor roles maintained by NISO ([credit.niso.org](https://credit.niso.org)) and records, per role, who contributed, which AI tools were used, what they were used for, and how extensively the work depended on them. Responsibility for the contents of this paper rests with the human authors.
+> The structured statement of AI use accompanying this work was produced with the sIfA Tool — *Statement of Intellectual Fellowship and Accountability* (Schomerus, 2026), a browser-based tool that maps the work onto the 14 CRediT contributor roles maintained by NISO ([credit.niso.org](https://credit.niso.org)) and records, per role, who contributed, which AI tools were used, what they were used for, and how extensively the work depended on them. Responsibility for the contents of this paper rests with the human authors.
 
 ---
 
 ## Caption to the sIfA figure (when embedded in a paper or report)
 
-> Figure X. Statement of Intellectual Fellowship and Accountability (sIfA) for this work, generated with the sIfA Tool v1.5 (Schomerus, 2026). The orange field represents human contribution; the inner purple shape represents AI contribution; each axis is one CRediT contributor role.
+> Figure X. Statement of Intellectual Fellowship and Accountability (sIfA) for this work, generated with the sIfA Tool v1.5.1 (Schomerus, 2026). The orange field shows the human side and the inner purple shape the AI side of the human/AI interaction; each axis is one CRediT contributor role.
 
 ---
 

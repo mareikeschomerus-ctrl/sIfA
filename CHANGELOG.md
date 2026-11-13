@@ -2,6 +2,13 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
+## [1.5.1] — 2026-11-13
+
+### Changed
+- **"Human/AI interaction" wording throughout.** sIfA records human/AI interaction, not AI "contribution". The page title is now "Human/AI Interaction Statement"; the guided agent introduces itself as "your sIfA agent", its subtitle reads "Guided human/AI interaction interview" and its closing line says "save your Human/AI Interaction Statement"; the CSV file is now named `sIfA_Human_AI_Interaction.csv`; the tool name inside exported SVG data is "sIfA Human/AI Interaction Statement Tool".
+- **The agent speaks of roles.** "Which role would you like to include?", "N roles have been added", "include another role", "Type the role name…", and "What is X's level of involvement in [role]?" replace the earlier "contribution" phrasing.
+- Unchanged by design: CRediT's own name and definitions ("Contributor Role Taxonomy", "contributor roles"), and the internal `AIContributionStatement` label of the data block inside exported SVGs, which software reading older sIfA files relies on.
+
 ## [1.5] — 2026-11-13
 
 ### Added
