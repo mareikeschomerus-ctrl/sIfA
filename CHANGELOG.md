@@ -2,6 +2,14 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
+## [1.7] — 2026-11-24
+
+### Added
+- **Copy taxonomy / Paste a taxonomy — share a taxonomy as text, no attachment.** "⧉ Copy taxonomy" (taxonomy window) puts the role list on the clipboard with a one-line explanation in front, ready to paste into an email or chat message. "Paste a taxonomy…" takes that text back in: the whole message can be pasted, including greeting and signature; line breaks and "smart" quotes added by mail programs are repaired, and curly quotes that belong to a description are preserved. As with files, the roles open for review and nothing changes until saved. If a browser blocks copying, the text is shown for copying by hand.
+
+### Changed
+- **Sharing instructions in the taxonomy window** now explain both ways — as a file (Save my taxonomy / Load a taxonomy…, no need to open the file itself) and as text (Copy taxonomy / Paste a taxonomy…).
+
 ## [1.6] — 2026-11-24
 
 ### Added
