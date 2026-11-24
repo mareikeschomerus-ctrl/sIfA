@@ -2,10 +2,12 @@ cff-version: 1.2.0
 message: "If you use sIfA in published work, please cite it using the metadata below."
 title: "sIfA Tool — Statement of Intellectual Fellowship and Accountability"
 abstract: >-
-  A browser-based tool for declaring how AI tools contributed to a piece of
-  research, mapped onto the 14 CRediT contributor roles. Produces a structured
-  table and a single-page visualisation (the "sIfA figure") that can be
-  attached to a publication, report, or institutional disclosure.
+  sIfA gives people creating knowledge a structured, standardised way to
+  record AI interaction across every stage of knowledge creation. For research,
+  this is anchored in the Contributor Role Taxonomy (CRediT) that journals
+  already understand. If CRediT does not apply to your processes, you can use
+  your own process and develop your own taxonomy, including for creative
+  projects or practical work that benefit from AI accountability.
 type: software
 authors:
   - family-names: Schomerus

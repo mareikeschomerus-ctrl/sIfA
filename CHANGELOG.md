@@ -6,6 +6,7 @@ All notable changes to the sIfA tool are documented in this file. The format fol
 
 ### Fixed
 - **Every listed role now appears in the figure and the exported table, including roles with no AI interaction.** Since v1.3 the figure drew an axis only for roles where something had been entered (a contributor, an AI extent above 0, a tool or a note), and the Table & Figure / Table only exports left the same roles out. A role kept in the table and marked 0 therefore vanished from both — hiding exactly the information that AI was *not* used there. Now every role in the table gets an axis and a row (shown as 0); only roles removed with × are left out.
+- **Archive metadata (re-issued release, same tool files).** Zenodo rejected the first v1.5.2 release ("Extra metadata load failed"), so no archive record was created. `.zenodo.json` now uses Zenodo's licence code `apache-2.0` and drops an empty `communities` list; the Zenodo description and the CITATION.cff abstract now use the website's own wording (human/AI interaction) instead of the older "how AI tools contributed" framing. The v1.5.2 tag was moved to this commit and the release re-published; the tool downloads are byte-for-byte unchanged.
 
 ## [1.5.1] — 2026-11-13
 

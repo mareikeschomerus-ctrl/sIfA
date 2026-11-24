@@ -1,9 +1,9 @@
 {
   "title": "sIfA Tool — Statement of Intellectual Fellowship and Accountability",
-  "description": "<p>A browser-based tool for declaring how AI tools contributed to a piece of research, mapped onto the 14 <a href=\"https://credit.niso.org\">CRediT contributor roles</a> maintained by NISO. Produces a structured table and a single-page visualisation (the \"sIfA figure\") that can be attached to a publication, report, or institutional disclosure.</p><p><strong>sIfA</strong> stands for <em>Statement of Intellectual Fellowship and Accountability</em>. <em>Fellowship</em> treats AI tools as named collaborators in the work, not invisible utilities. <em>Accountability</em> keeps responsibility for the published work with the human author, who is making the disclosure deliberately and transparently.</p><p>The tool is distributed as a single self-contained HTML file (online and fully offline builds are provided). No install, no server, no build step required for end users.</p>",
+  "description": "<p>sIfA gives people creating knowledge a structured, standardised way to record AI interaction across every stage of knowledge creation. For research, this is anchored in the Contributor Role Taxonomy (CRediT) that journals already understand. If CRediT does not apply to your processes, you can use your own process and develop your own taxonomy, including for creative projects or practical work that benefit from AI accountability.</p><p>AI interactions in knowledge creation are expanding faster than conventions for declaring it can keep up. Free-text disclosures are inconsistent and difficult to compare. <strong>sIfA — Statement of Intellectual Fellowship and Accountability</strong> — gives authors and knowledge creators a shared, structured format for disclosure.</p><p>With the sIfA tool you map your AI interaction onto roles that you define. For research, sIfA is set up with the 14 <a href=\"https://credit.niso.org\">CRediT contributor roles</a> — the standard that most major journals already use to record who did what. For each role, you record for what type of work AI was used and which AI tool, how extensively (on a simple three point scale: not at all, little, a lot), and a short audit-trail note. The result is a table and a distinctive figure you can attach to any publication, report, or institutional disclosure form. The sIfA figure reflects a commitment to reflection and transparency when it comes to AI in knowledge creation; the table acts as a detailed track record that supports learning for all.</p><p>sIfA was developed by Mareike Schomerus and Engy Saleh at Busara.</p><p>The tool is distributed as a single self-contained HTML file (online and fully offline builds are provided). No install, no server, no build step required for end users. Website: <a href=\"https://www.sifatool.org\">www.sifatool.org</a></p>",
   "upload_type": "software",
   "access_right": "open",
-  "license": "Apache-2.0",
+  "license": "apache-2.0",
   "creators": [
     {
       "name": "Schomerus, Mareike",
@@ -29,6 +29,5 @@
       "resource_type": "publication-standard"
     }
   ],
-  "communities": [],
   "notes": "Bundles React 18, ReactDOM 18 and Babel Standalone 7 in the offline build under their respective MIT licences (see THIRD_PARTY_LICENSES.md). The underlying CRediT taxonomy is a NISO standard, referenced under its own terms; this product is not endorsed by or affiliated with NISO."
 }
