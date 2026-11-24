@@ -2,6 +2,11 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
+## [1.5.2] — 2026-11-24
+
+### Fixed
+- **Every listed role now appears in the figure and the exported table, including roles with no AI interaction.** Since v1.3 the figure drew an axis only for roles where something had been entered (a contributor, an AI extent above 0, a tool or a note), and the Table & Figure / Table only exports left the same roles out. A role kept in the table and marked 0 therefore vanished from both — hiding exactly the information that AI was *not* used there. Now every role in the table gets an axis and a row (shown as 0); only roles removed with × are left out.
+
 ## [1.5.1] — 2026-11-13
 
 ### Changed
