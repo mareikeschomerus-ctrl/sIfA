@@ -2,6 +2,19 @@
 
 All notable changes to the sIfA tool are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project follows [Semantic Versioning](https://semver.org/) from v1.0 onwards.
 
+## [1.6] — 2026-11-24
+
+### Added
+- **Save my taxonomy / Load a taxonomy.** A custom role list can be saved as a small shareable file (`sIfA taxonomy - <name>.json`: role names, descriptions, and references to any CRediT roles it includes — never any sIfA data), so a group of authors can work from one taxonomy. Save from the taxonomy window or the toolbar; load from the taxonomy window or the main Load button. A loaded taxonomy opens for review and changes nothing until it is saved; roles matching an existing role by name keep the data already entered for them. Loaded files are checked: at most 100 roles, names up to 120 and descriptions up to 2,000 characters, plain text only.
+- **Taxonomy name** field, used for the file name.
+
+### Changed
+- **CRediT roles are fixed; your own roles are fully editable.** In the taxonomy window, CRediT roles show their official name and definition read-only (marked "CRediT · fixed"; they can still be removed). Roles you create can be renamed and given a description, which is saved with your sIfA and shown on hover in the table.
+
+### Fixed
+- **Edited CRediT names or definitions no longer silently revert.** Earlier versions let you edit a CRediT role's name or definition, but restoring the sIfA re-read the official CRediT text, so the edit was lost without notice. The fields are now read-only instead.
+- **A custom role with the same name as a CRediT role keeps its own description.** A custom "Methodology" used to share CRediT's internal id and was swapped for the CRediT role on reload; custom roles now get their own id.
+
 ## [1.5.2] — 2026-11-24
 
 ### Fixed
